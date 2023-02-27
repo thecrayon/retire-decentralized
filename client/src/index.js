@@ -1,3 +1,4 @@
+import {theme} from "./chakra/theme";
 import {
   modalConnectors,
   walletConnectProvider
@@ -8,7 +9,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import App from './App';
 import './index.css';
-
 // TODO: change to desired chains
 import { ChakraProvider } from "@chakra-ui/react";
 import { mainnet } from "wagmi/chains";
@@ -52,14 +52,14 @@ const Application = () => {
         projectId={process.env.REACT_APP_WEB3_MODAL_PROJECT_ID}
         ethereumClient={ethereumClient}
       />
-      <WagmiConfig client={wagmiClient}/>
         <BrowserRouter>
-          <WagmiConfig client={wagmiClient}>
-            <ChakraProvider>
-              <ContextProvider>
-                <App />
-              </ContextProvider>
-            </ChakraProvider>
+          <WagmiConfig client={wagmiClient}/>
+            <WagmiConfig client={wagmiClient}>
+              <ChakraProvider theme={theme}>
+                <ContextProvider>
+                  <App />
+                </ContextProvider>
+              </ChakraProvider>
           </WagmiConfig>
         </BrowserRouter>
       </>
