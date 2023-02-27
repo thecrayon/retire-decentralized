@@ -2,17 +2,16 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import {
-  Navbar,
-  VideoDemo,
-  HowItWorks,
-  WhereWeAreHeaded,
-  RetirementCalculator,
-  PeerComparison,
   FAQ,
   Footer,
+  HowItWorks,
+  Navbar,
+  PeerComparison,
+  VideoDemo,
+  WhereWeAreHeaded,
 } from "./components";
 
-import { Home } from "./pages";
+import { Home, RetirementCalculator } from "./pages";
 
 const App = () => {
   return (
@@ -21,7 +20,7 @@ const App = () => {
         <Navbar />
       </div>
 
-      <div className="mt-20 container mx-auto">
+      <div className="mt-20 container mx-auto overflow-hidden">
         <div className="min-h-screen">
           <Routes>
             <Route path="*" element={<Home />} />
