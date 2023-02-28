@@ -249,48 +249,11 @@ const MobileNavItem = ({ label, children, href }) => {
 
 const NAV_ITEMS = [
   {
-    label: "About",
-    children: [
-      {
-        label: "How It Works",
-        subLabel: "Learn How To Start Using Our Platform",
-        href: "/about/how-it-works",
-      },
-      {
-        label: "Where We Are Headed",
-        subLabel: "Fully Decentralized, Retirement Planning",
-        href: "/about/where-we-are-headed",
-      },
-    ],
+    label: "Dashboard",
+    href: "/",
   },
   {
-    label: "Plan Your Retirement",
-    children: [
-      {
-        label: "Retirement Calculator",
-        subLabel: "Calculate Your Retirement Goals",
-        href: "/plan-your-retirement/retirement-calculator",
-      },
-      {
-        label: "Peer Comparison",
-        subLabel: "Compare Your Retirement Goals With Peers",
-        href: "/plan-your-retirement/peer-comparison",
-      },
-    ],
-  },
-  {
-    label: "Getting Started",
-    children: [
-      {
-        label: "Demo Video",
-        subLabel: "See How It Works",
-        href: "/getting-started/demo-video",
-      },
-      {
-        label: "FAQ",
-        subLabel: "Frequently Asked Questions",
-        href: "/getting-started/faq",
-      },
-    ],
+    label: "How It Works",
+    href: "/how-it-works",
   },
 ];

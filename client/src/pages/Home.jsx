@@ -1,12 +1,18 @@
 import React from "react";
 
-import { Features, Hero } from "../components";
+import Card from "../components/Card";
+import PageContent from "../components/Layout/PageContent";
 
 const Home = () => {
   return (
     <>
-      <Hero />
-      <Features />
+      <PageContent>
+        {/* LHS - Your Assets */}
+        <Card title="your assets">{/* wallet contents table */}</Card>
+
+        {/* RHS - Yields (depends on assets) */}
+        <Card title="yields"></Card>
+      </PageContent>
     </>
   );
 };

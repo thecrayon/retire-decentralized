@@ -9,6 +9,7 @@ export const ContextProvider = ({ children }) => {
   const getDefiYieldOptions = async () => {
     const result = await fetch("https://yields.llama.fi/pools");
     const response = await result.json();
+    console.log(response.data.filter((item) => item.chain === "Ethereum" && item.symbol === "ETH" && item.apyBase !== null && item.apyBase !== 0).slice(0,3))
     return response;
   };
 
