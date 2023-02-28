@@ -20,7 +20,7 @@ const App = () => {
         <Navbar />
       </div>
 
-      <div className="mt-20 container mx-auto overflow-hidden">
+      <div className="container mx-auto overflow-hidden mt-20">
         <div className="min-h-screen">
           <Routes>
             <Route path="*" element={<Home />} />

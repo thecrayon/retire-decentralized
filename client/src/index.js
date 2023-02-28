@@ -13,6 +13,7 @@ import './index.css';
 import { ChakraProvider } from "@chakra-ui/react";
 import { mainnet } from "wagmi/chains";
 import { ContextProvider } from "./context/ContextProvider";
+import { registerLicense } from '@syncfusion/ej2-base';
 
 
 import {
@@ -25,6 +26,8 @@ import { Web3Modal } from "@web3modal/react";
 import { arbitrum, polygon } from "wagmi/chains";
 
 const Application = () => {
+    // Registering Syncfusion license key
+    registerLicense(process.env.REACT_APP_SYNCFUSION_LICENSE_KEY);
 
     const chains = [arbitrum, mainnet, polygon];
 
