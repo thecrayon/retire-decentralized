@@ -52,20 +52,21 @@ const Calculator = () => {
       </div>
 
       <div className="grid grid-cols-1 font-poppins text-[14px]">
+        {/* TODO: clean this up. hard to read now*/}
         <p>
-          with a current portfolio value of{" "}
+          your token balance of{" "}
           <span className="font-bold">
             $
             {retirementCalculatorData?.totalValueOfAllTokensInWallet?.toFixed(
               2
             )}{" "}
           </span>{" "}
-          and an annual percentage yield of{" "}
+          at an annual rate of return of{" "}
           <span className="font-bold">
             {retirementCalculatorData?.annualReturnRate}%{" "}
           </span>{" "}
-          you will have a future portfolio value of{" "}
-          <span className="font-bold">
+          will be worth{" "}
+          <span className="font-bold underline underline-offset-4">
             {" "}
             $
             {(

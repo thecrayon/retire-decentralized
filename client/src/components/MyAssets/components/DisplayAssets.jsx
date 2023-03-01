@@ -6,11 +6,13 @@ import { styles } from "../../../styles";
 import { formatBalance, formatQuantity } from "../../../helpers";
 
 const DisplayAssets = (props) => {
-  // balance
-  // contract_decimals
-  // contract_ticker_symbol
-  // logo_url
-  // quote
+  const getMinAndMaxApy = (apyObj) => {
+    const apyArray = apyObj.map((apy) => apy.apy);
+    const minApy = Math.min(...apyArray);
+    const maxApy = Math.max(...apyArray);
+    return { minApy, maxApy };
+  };
+
   return (
     <Card title="">
       <div className="grid grid-cols-1 font-poppins justify-end">
@@ -46,18 +48,25 @@ const DisplayAssets = (props) => {
           </div>
           <div className="flex flex-col">
             <div className="text-right">
-              {props?.defiYieldOptionsForToken[0]?.apy?.toFixed(2)}%
+              {getMinAndMaxApy(
+                props?.defiYieldOptionsForToken
+              )?.minApy?.toFixed(2)}{" "}
+              -{" "}
+              {getMinAndMaxApy(
+                props?.defiYieldOptionsForToken
+              )?.maxApy?.toFixed(2)}
+              %
             </div>
-            <div className="mt-1 text-right text-gray-400 lowercase text-xs">
+            {/* <div className="mt-1 text-right text-gray-400 lowercase text-xs">
               {" "}
               on {props?.defiYieldOptionsForToken[0]?.project}
-            </div>
+            </div> */}
           </div>
         </div>
-        {/* button to deposit in contract */}
-
-        <div className="grid grid-cols-2 grid-rows-1 gap-3">
+        <div className="grid grid-cols-2 grid-rows-1 gap-3 mt-2">
+          {/* button to deposit token on protocol */}
           <button className={`mt-5 ${styles.primaryButton}`}>Deposit</button>
+          {/* button to get more details about yields on token  */}
           <button className={`mt-5 ${styles.secondaryButton}`}>Details</button>
         </div>
 

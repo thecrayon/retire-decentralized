@@ -48,6 +48,7 @@ const Application = () => {
       <Web3Modal
         projectId={process.env.REACT_APP_WEB3_MODAL_PROJECT_ID}
         ethereumClient={ethereumClient}
+        themeMode="light"
       />
         <BrowserRouter>
           <WagmiConfig client={wagmiClient}/>
