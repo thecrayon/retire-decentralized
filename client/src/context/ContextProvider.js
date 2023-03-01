@@ -65,12 +65,47 @@ export const ContextProvider = ({ children }) => {
       })
       setUserTokenBalancesWithInvestmentData(userTokenBalancesWithInvestmentData);
     }
-  }, [userTokenBalances, defiYieldOptions])
+  }, [userTokenBalances, defiYieldOptions]);
+
+  const getTotalValueOfAllTokensInWallet = (userTokenBalancesWithInvestmentData) => {
+    const totalValueOfAllTokensInWallet = userTokenBalancesWithInvestmentData.reduce((acc, userTokenBalanceWithInvestmentData) => {
+      return acc + userTokenBalanceWithInvestmentData.quote;
+    }, 0);
+    return totalValueOfAllTokensInWallet;
+  };
+
+  const getWeightedAverageApyForToken = (defiYieldOptionsForToken, userTokenBalance, totalValueOfAllTokensInWallet) => {
+    const weightedAverageApyForToken = defiYieldOptionsForToken.reduce((acc, defiYieldOptionForToken) => {
+      const weightedApyForToken = (defiYieldOptionForToken.apy * userTokenBalance.quote) / totalValueOfAllTokensInWallet;
+      return acc + weightedApyForToken;
+    }, 0);
+    return weightedAverageApyForToken;
+  };
+
+  // when userTokenBalancesWithInvestmentData changes, calculate 1) total value of all tokens in wallet and 2) calculate the weighted average of all the defi yield options for each token (weighted by the amount of that token in the wallet and the arithmetic average apy of the defi yield option)
+  useEffect(() => {
+    if (userTokenBalancesWithInvestmentData) {
+      const totalValueOfAllTokensInWallet =  getTotalValueOfAllTokensInWallet(userTokenBalancesWithInvestmentData);
+      const weightedAverageApyForAllTokens = userTokenBalancesWithInvestmentData.reduce((acc, userTokenBalanceWithInvestmentData) => {
+        const weightedAverageApyForToken = getWeightedAverageApyForToken(userTokenBalanceWithInvestmentData.defiYieldOptionsForToken, userTokenBalanceWithInvestmentData, totalValueOfAllTokensInWallet);
+        return acc + weightedAverageApyForToken;
+      }, 0);
+
+      setRetirementCalculatorData({
+        ...retirementCalculatorData,
+        annualReturnRate: weightedAverageApyForAllTokens.toFixed(2),
+        totalValueOfAllTokensInWallet,
+      })
+    }
+  }, [userTokenBalancesWithInvestmentData])
 
   // check if user is on eth mainnet and open modal if not
   useEffect(() => {
-    chain?.name !== "Ethereum" ? setModalOpen(true) : setModalOpen(false)
-  }, [chain])
+    if (!address) return;
+    else {
+      chain?.name !== "Ethereum" ? setModalOpen(true) : setModalOpen(false)
+    }
+  }, [chain, address])
 
   return (
     <StateContext.Provider value={{

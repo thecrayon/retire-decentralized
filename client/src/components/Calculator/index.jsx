@@ -7,6 +7,7 @@ import { useStateContext } from "../../context/ContextProvider";
 
 const Calculator = () => {
   const { retirementCalculatorData } = useStateContext();
+
   return (
     <div className="grid grid-cols-1 gap-10">
       <div>
@@ -51,12 +52,39 @@ const Calculator = () => {
       </div>
 
       <div className="grid grid-cols-1 font-poppins text-[14px]">
-        <div>
-          years until retirement: {retirementCalculatorData?.yearsUntilRetire}
-        </div>
-        <div>
-          annual percentage yield: {retirementCalculatorData?.annualReturnRate}
-        </div>
+        <p>
+          with a current portfolio value of{" "}
+          <span className="font-bold">
+            $
+            {retirementCalculatorData?.totalValueOfAllTokensInWallet?.toFixed(
+              2
+            )}{" "}
+          </span>{" "}
+          and an annual percentage yield of{" "}
+          <span className="font-bold">
+            {retirementCalculatorData?.annualReturnRate}%{" "}
+          </span>{" "}
+          you will have a future portfolio value of{" "}
+          <span className="font-bold">
+            {" "}
+            $
+            {(
+              retirementCalculatorData?.totalValueOfAllTokensInWallet *
+              (1 + retirementCalculatorData?.annualReturnRate / 100) **
+                retirementCalculatorData?.yearsUntilRetire
+            ).toLocaleString("en", {
+              useGrouping: true,
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
+          </span>{" "}
+          in{" "}
+          <span className="font-bold">
+            {" "}
+            {retirementCalculatorData?.yearsUntilRetire}{" "}
+          </span>{" "}
+          years
+        </p>
       </div>
     </div>
   );

@@ -21,10 +21,6 @@ const App = () => {
             <Route path="*" element={<Home />} />
             <Route path="/" element={<Home />} />
             <Route path="/" element={<Home />} />
-            <Route
-              path="/plan-your-retirement/retirement-calculator"
-              element={<RetirementCalculator />}
-            />
           </Routes>
         </div>
 

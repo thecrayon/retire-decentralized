@@ -16,7 +16,6 @@ const SliderThumbWithTooltip = ({ name, xAxes, toolTip }) => {
     useStateContext();
 
   const handleChange = (e) => {
-    console.log("changing", name, "to", e);
     setRetirementCalculatorData({
       ...retirementCalculatorData,
       [name]: e,
@@ -27,7 +26,7 @@ const SliderThumbWithTooltip = ({ name, xAxes, toolTip }) => {
     <Slider
       id={`slider-${name}`}
       name={name}
-      value={retirementCalculatorData.name}
+      value={retirementCalculatorData[name]}
       min={xAxes[0]}
       max={xAxes[2]}
       colorScheme="blue"
