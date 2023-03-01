@@ -6,7 +6,7 @@ const Card = ({ title, children }) => {
       <h2 className="mt-1 ml-1 font-bold font-poppins text-md md:text-lg uppercase">
         {title}
       </h2>
-      <p className={`mt-5 md:mt-10 left-1 font-poppins`}>{children}</p>
+      <p className={`mt-5 md:mt-10 ml-1 font-poppins`}>{children}</p>
     </div>
   );
 };
