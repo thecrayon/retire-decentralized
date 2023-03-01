@@ -18,11 +18,14 @@ const DisplayAssets = (props) => {
       <div className="grid grid-cols-1 font-poppins justify-end">
         {/* logo / asset name */}
         <div className="flex flex-row items-center space-x-5">
-          <Image
-            src={props?.logo_url}
-            alt={`${props?.contract_ticker_symbol} logo`}
-            className="object-contain rounded-full w-[50px] h-[50px]"
-          />
+          <div style={{ backgroundColor: "white" }}>
+            <Image
+              src={props?.logo_url}
+              alt={`${props?.contract_ticker_symbol} logo`}
+              className="object-contain rounded-full w-[50px] h-[50px]"
+              filter="invert(100%)"
+            />
+          </div>
           <div className="grid grid-cols-1 grid-rows-2 gap-0.5">
             <h2 className="font-semibold">{props?.contract_ticker_symbol}</h2>
             <h3 className="text-sm">{props?.contract_name}</h3>

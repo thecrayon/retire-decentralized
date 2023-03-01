@@ -97,7 +97,9 @@ export const ContextProvider = ({ children }) => {
         totalValueOfAllTokensInWallet,
       })
     }
-  }, [userTokenBalancesWithInvestmentData])
+  }, [userTokenBalancesWithInvestmentData]);
+
+  console.log("defi", userTokenBalances);
 
   // check if user is on eth mainnet and open modal if not
   useEffect(() => {
