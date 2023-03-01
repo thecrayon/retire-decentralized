@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import Table from "../Table";
-import SmallDeviceAssetDisplay from "./components/SmallDeviceAssetDisplay";
+import DisplayAssets from "./components/DisplayAssets";
 import { useStateContext } from "../../context/ContextProvider";
 
 const tableColumns = [
@@ -48,32 +48,14 @@ const MyAssets = () => {
 
   return (
     <div>
-      {/* large devices */}
-      <div className="hidden sm:block">
-        <Table
-          id="myAssets"
-          data={data}
-          drawerClickFunc={() => {}}
-          tableColumns={tableColumns}
-          paging
-        />
-      </div>
-
-      {/* small devices  */}
-      <div className="block sm:hidden">
-        {/* map through assets and display info */}
-        {userTokenBalances &&
-          userTokenBalances.map((token) => {
-            return (
-              <div className="flex flex-wrap gap-3">
-                <SmallDeviceAssetDisplay
-                  key={token.contract_ticker_symbol}
-                  {...token}
-                />
-              </div>
-            );
-          })}
-      </div>
+      {userTokenBalances &&
+        userTokenBalances.map((token) => {
+          return (
+            <div className="">
+              <DisplayAssets key={token.contract_ticker_symbol} {...token} />
+            </div>
+          );
+        })}
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React from "react";
 
 const Card = ({ title, children }) => {
   return (
-    <div className="min-w-[300px] md:min-w-[550px] min-h-[300px] bg-white rounded-[10px] p-2">
+    <div className="min-w-[300px] md:min-w-[500px] min-h-[300px] bg-white rounded-[10px] p-2">
       <h2 className="mt-1 ml-1 font-bold font-poppins text-md md:text-lg uppercase">
         {title}
       </h2>

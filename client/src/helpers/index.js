@@ -2,3 +2,8 @@
 export const formatAddress = (address) => {
   return `${address.slice(0, 4)}...${address.slice(-4)}`;
 };
+
+export const formatBalance = (balance, contract_decimals) => {
+  // return number with commas and 5 decimal places
+  return (balance / 10 ** contract_decimals).toFixed(5);
+};
