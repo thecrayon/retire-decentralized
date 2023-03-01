@@ -19,7 +19,6 @@ const useAllBalances = () => {
         return response;
     };
 
-
     return {
         // data and functions
         balances,

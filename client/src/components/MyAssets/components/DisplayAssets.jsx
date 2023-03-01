@@ -41,8 +41,18 @@ const DisplayAssets = (props) => {
         </div>
         {/* asset apy */}
         <div className="mt-5 grid grid-cols-2 grid-rows-1 w-full text-[14px]">
-          <h3 className="font-bold">Apy</h3>
-          <div className="text-right">1%</div>
+          <div>
+            <h3 className="font-bold">Apy</h3>
+          </div>
+          <div className="flex flex-col">
+            <div className="text-right">
+              {props?.defiYieldOptionsForToken[0]?.apy?.toFixed(2)}%
+            </div>
+            <div className="mt-1 text-right text-gray-400 lowercase text-xs">
+              {" "}
+              on {props?.defiYieldOptionsForToken[0]?.project}
+            </div>
+          </div>
         </div>
         {/* button to deposit in contract */}
 

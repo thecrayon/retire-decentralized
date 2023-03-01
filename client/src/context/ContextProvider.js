@@ -17,15 +17,16 @@ export const ContextProvider = ({ children }) => {
 
   // WAGMI hooks
   const { address } = useAccount();
-  const { fetchMyTokenBalances } = useAllBalances();
   const {chain} = useNetwork();
+  
+  // custom hook to get user token balances in wallet on eth mainnet
+  const { fetchMyTokenBalances } = useAllBalances();
 
   const { llamaFiURL } = CONSTANTS;
 
   const getDefiYieldOptions = async () => {
     const result = await fetch(llamaFiURL);
     const response = await result.json();
-    console.log(response.data.filter((item) => item.chain === "Ethereum" && item.symbol === "ETH" && item.apyBase !== null && item.apyBase !== 0).slice(0,3))
     return response;
   };
 
@@ -35,21 +36,44 @@ export const ContextProvider = ({ children }) => {
     });
   }, [])
 
-  console.log("defiYieldOptions", defiYieldOptions)
-
+  // fetch user token balances on eth mainnet
   useEffect(() => {
     if (address) fetchMyTokenBalances(address).then(res => setUserTokenBalances(res?.data?.items));
   }, [address]);
 
+  const [userTokenBalancesWithInvestmentData, setUserTokenBalancesWithInvestmentData] = useState([]);
+  // when userTokenBalances changes or defiYieldOptions changes, create a new array of objects with userTokenBalances and an array of all the defi yield options available for that token
+  useEffect(() => {
+    
+    if (userTokenBalances && defiYieldOptions) {
+      const userTokenBalancesWithInvestmentData = userTokenBalances.map((userTokenBalance) => {
+        const defiYieldOptionsForToken = defiYieldOptions.filter((defiYieldOption) => 
+        defiYieldOption.symbol === userTokenBalance.contract_ticker_symbol && 
+        defiYieldOption.chain === "Ethereum" && 
+        defiYieldOption.apyBase !== null && 
+        defiYieldOption.apyBase !== 0).slice(0,3);
+        return {
+          ...userTokenBalance,
+          defiYieldOptionsForToken,
+        }
+      })
+      setUserTokenBalancesWithInvestmentData(userTokenBalancesWithInvestmentData);
+    }
+  }, [userTokenBalances, defiYieldOptions])
+
+  console.log("userTokenBalancesWithInvestmentData", userTokenBalancesWithInvestmentData)
+  
+
+  // check if user is on eth mainnet and open modal if not
   useEffect(() => {
     chain?.name !== "Ethereum" ? setModalOpen(true) : setModalOpen(false)
-
   }, [chain])
 
   return (
     <StateContext.Provider value={{
       defiYieldOptions,
       userTokenBalances,
+      userTokenBalancesWithInvestmentData,
       address,
       modalOpen,
     }}>

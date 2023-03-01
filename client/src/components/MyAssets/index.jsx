@@ -42,12 +42,13 @@ const data = [
 ];
 
 const MyAssets = () => {
-  const { userTokenBalances } = useStateContext();
+  const { userTokenBalances, userTokenBalancesWithInvestmentData } =
+    useStateContext();
 
   return (
     <div>
-      {userTokenBalances &&
-        userTokenBalances.map((token) => {
+      {userTokenBalancesWithInvestmentData.length > 0 &&
+        userTokenBalancesWithInvestmentData.map((token) => {
           return (
             <div className="">
               <DisplayAssets key={token.contract_ticker_symbol} {...token} />
