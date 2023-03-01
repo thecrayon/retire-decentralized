@@ -15,6 +15,13 @@ export const ContextProvider = ({ children }) => {
   // Modal state
   const [modalOpen, setModalOpen] = useState(false);
 
+  // Yield details modal
+  const [yieldDetailsModal, setYieldDetailsModal] = useState({
+    isOpen: false,
+    view: "details",
+    data: {},
+  });
+
   // WAGMI hooks
   const { address } = useAccount();
   const {chain} = useNetwork();
@@ -99,8 +106,6 @@ export const ContextProvider = ({ children }) => {
     }
   }, [userTokenBalancesWithInvestmentData]);
 
-  console.log("defi", userTokenBalances);
-
   // check if user is on eth mainnet and open modal if not
   useEffect(() => {
     if (!address) return;
@@ -118,6 +123,8 @@ export const ContextProvider = ({ children }) => {
       modalOpen,
       retirementCalculatorData,
       setRetirementCalculatorData,
+      yieldDetailsModal,
+      setYieldDetailsModal,
     }}>
       {children}
     </StateContext.Provider>

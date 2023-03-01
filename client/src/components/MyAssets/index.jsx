@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
-import Table from "../Table";
-import DisplayAssets from "./components/DisplayAssets";
 import { useStateContext } from "../../context/ContextProvider";
 import Loader from "../Loader";
+import DisplayAssets from "./components/DisplayAssets";
 
 const MyAssets = () => {
   // TODO: add an alert if userTokenBalances total doesn't match userTokenBalancesWithInvestmentData total

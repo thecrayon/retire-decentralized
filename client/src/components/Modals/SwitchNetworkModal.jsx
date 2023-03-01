@@ -2,8 +2,8 @@ import React from "react";
 import Modal from "react-modal";
 import { useSwitchNetwork } from "wagmi";
 
-import { styles } from "./styles";
-import { useStateContext } from "./context/ContextProvider";
+import { styles } from "../../styles";
+import { useStateContext } from "../../context/ContextProvider";
 
 const SwitchNetworkModal = () => {
   const { modalOpen } = useStateContext();

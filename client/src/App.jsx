@@ -2,12 +2,12 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { Footer, Navbar } from "./components";
+import SwitchNetworkModal from "./components/Modals/SwitchNetworkModal";
 import { useStateContext } from "./context/ContextProvider";
-import { Home, RetirementCalculator } from "./pages";
-import SwitchNetworkModal from "./SwitchNetworkModal";
+import { Home } from "./pages";
 
 const App = () => {
-  const { modalOpen } = useStateContext();
+  const { modalOpen, drawerOpen } = useStateContext();
   return (
     <div className="flex relative">
       <div className="fixed z-10 w-full">

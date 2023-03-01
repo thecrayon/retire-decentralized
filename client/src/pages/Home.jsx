@@ -4,6 +4,7 @@ import { useNetwork } from "wagmi";
 import Calculator from "../components/Calculator";
 import Card from "../components/Card";
 import PageContent from "../components/Layout/PageContent";
+import YieldDetailsModal from "../components/Modals/YieldDetailsModal";
 import MyAssets from "../components/MyAssets";
 import { useStateContext } from "../context/ContextProvider";
 import { formatAddress } from "../helpers";
@@ -29,6 +30,7 @@ const Home = () => {
   // If address, show assets and calculator
   return (
     <>
+      <YieldDetailsModal />
       <PageContent>
         {/* LHS - Your Assets */}
         <Card

@@ -7,3 +7,8 @@ export const formatBalance = (balance, contract_decimals) => {
   // return number with commas and 5 decimal places
   return (balance / 10 ** contract_decimals).toFixed(5);
 };
+
+// take in number and return number with commas and 2 decimal places
+export const formatNumber = (number) => {
+  return number.toLocaleString(undefined, { maximumFractionDigits: 2 });
+};

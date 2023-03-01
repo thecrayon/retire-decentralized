@@ -1,11 +1,22 @@
 import { Image } from "@chakra-ui/react";
 import React from "react";
 
-import Card from "../../Card";
+import { useStateContext } from "../../../context/ContextProvider";
+import { formatBalance } from "../../../helpers";
 import { styles } from "../../../styles";
-import { formatBalance, formatQuantity } from "../../../helpers";
+import Card from "../../Card";
 
 const DisplayAssets = (props) => {
+  const { setDrawerOpen, drawerOpen, setYieldDetailsModal } = useStateContext();
+
+  const handleOpenModal = () => {
+    setYieldDetailsModal((prev) => ({
+      ...prev,
+      isOpen: true,
+      data: props,
+    }));
+  };
+
   const getMinAndMaxApy = (apyObj) => {
     const apyArray = apyObj.map((apy) => apy.apy);
     const minApy = Math.min(...apyArray);
@@ -60,19 +71,18 @@ const DisplayAssets = (props) => {
               )?.maxApy?.toFixed(2)}
               %
             </div>
-            {/* <div className="mt-1 text-right text-gray-400 lowercase text-xs">
-              {" "}
-              on {props?.defiYieldOptionsForToken[0]?.project}
-            </div> */}
           </div>
         </div>
-        <div className="grid grid-cols-2 grid-rows-1 gap-3 mt-2">
-          {/* button to deposit token on protocol */}
-          <button className={`mt-5 ${styles.primaryButton}`}>Deposit</button>
+        <div className="grid grid-cols-1 grid-rows-1 gap-3 mt-2">
           {/* button to get more details about yields on token  */}
-          <button className={`mt-5 ${styles.secondaryButton}`}>Details</button>
+          <button
+            className={`mt-5 ${styles.secondaryButton}`}
+            onClick={handleOpenModal}
+            name="details"
+          >
+            Details
+          </button>
         </div>
-
         <div className="mt-3 border border-b border-gray-300" />
       </div>
     </Card>
