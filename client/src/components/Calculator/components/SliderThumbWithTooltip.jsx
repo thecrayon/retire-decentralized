@@ -6,11 +6,11 @@ import {
   SliderTrack,
   Tooltip,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import { useStateContext } from "../../../context/ContextProvider";
 
 const SliderThumbWithTooltip = ({ name, xAxes, toolTip }) => {
-  const [showTooltip, setShowTooltip] = React.useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
 
   const { retirementCalculatorData, setRetirementCalculatorData } =
     useStateContext();

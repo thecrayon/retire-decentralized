@@ -31,8 +31,8 @@ export const ContextProvider = ({ children }) => {
 
   // calculator state
   const [retirementCalculatorData, setRetirementCalculatorData] = useState({
-    yearsUntilRetire: 50,
-    annualReturnRate: 50,
+    yearsUntilRetire: 10,
+    annualReturnRate: 5,
   });
 
   const { llamaFiURL } = CONSTANTS;

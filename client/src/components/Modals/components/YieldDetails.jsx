@@ -1,9 +1,8 @@
-import { Tooltip } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React from "react";
 
 import { useStateContext } from "../../../context/ContextProvider";
-import { styles } from "../../../styles";
 import { formatNumber } from "../../../helpers";
+import { styles } from "../../../styles";
 
 // TODO: finish this component
 // contract_name
@@ -20,30 +19,26 @@ import { formatNumber } from "../../../helpers";
 // apyPct30D
 // ilRisk // illiquidity risk? can see right away
 
-const ProtocolYieldOption = (props) => {
-  console.log(props?.tvlUsd);
-
-  return (
-    <div key={props.project}>
-      <div className="grid grid-cols-2">
-        <div className="font-bold">Protocol</div>
-        <div className="text-right">{props?.project}</div>
-      </div>
-      <div className="grid grid-cols-2">
-        <div className="font-bold">TVL</div>
-        <div className="text-right">{formatNumber(props?.tvlUsd)}</div>
-      </div>
-      <div className="grid grid-cols-2">
-        <div className="font-bold">APY 30D</div>
-        <div className="text-right">{formatNumber(props?.apyPct30D)}</div>
-      </div>
-      <div className="grid grid-cols-2">
-        <div className="font-bold">IL Risk</div>
-        <div className="text-right">{props?.ilRisk}</div>
-      </div>
+const ProtocolYieldOption = (props) => (
+  <div key={props.project}>
+    <div className="grid grid-cols-2">
+      <div className="font-bold">Protocol</div>
+      <div className="text-right">{props?.project}</div>
     </div>
-  );
-};
+    <div className="grid grid-cols-2">
+      <div className="font-bold">TVL</div>
+      <div className="text-right">{formatNumber(props?.tvlUsd)}</div>
+    </div>
+    <div className="grid grid-cols-2">
+      <div className="font-bold">APY 30D</div>
+      <div className="text-right">{formatNumber(props?.apyPct30D)}</div>
+    </div>
+    <div className="grid grid-cols-2">
+      <div className="font-bold">IL Risk</div>
+      <div className="text-right">{props?.ilRisk}</div>
+    </div>
+  </div>
+);
 
 const YieldDetails = () => {
   const { yieldDetailsModal } = useStateContext();

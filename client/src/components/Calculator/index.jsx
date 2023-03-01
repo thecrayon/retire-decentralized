@@ -1,9 +1,10 @@
 import { Tooltip } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React from "react";
 
 import { RiQuestionLine } from "react-icons/ri";
-import SliderThumbWithTooltip from "./components/SliderThumbWithTooltip";
 import { useStateContext } from "../../context/ContextProvider";
+import SliderThumbWithTooltip from "./components/SliderThumbWithTooltip";
+import { calculateEndDate } from "../../helpers";
 
 const Calculator = () => {
   const { retirementCalculatorData } = useStateContext();
@@ -26,7 +27,7 @@ const Calculator = () => {
         </div>
         <SliderThumbWithTooltip
           name="yearsUntilRetire"
-          xAxes={[25, 50, 75]}
+          xAxes={[0, 25, 50]}
           toolTip="years"
         />
       </div>
@@ -84,7 +85,10 @@ const Calculator = () => {
             {" "}
             {retirementCalculatorData?.yearsUntilRetire}{" "}
           </span>{" "}
-          years
+          years{" "}
+          <span className="font-bold">
+            ({calculateEndDate(retirementCalculatorData?.yearsUntilRetire)})
+          </span>
         </p>
       </div>
     </div>
