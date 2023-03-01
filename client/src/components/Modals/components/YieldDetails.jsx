@@ -45,21 +45,14 @@ const YieldDetails = () => {
   const { data } = yieldDetailsModal;
 
   return (
-    // <div className="container grid grid-cols-4 grid-flow-row items-center justify-center">
-    //   <Image
-    //     src={data?.logo_url}
-    //     alt={`${data?.contract_ticker_symbol} logo`}
-    //     className="object-contain rounded-full w-[50px] h-[50px]"
-    //     filter="invert(100%)"
-    //   />
-
     <div className="container mx-auto grid grid-cols-1">
-      <h2 className="font-semibold font-poppins text-[16px]">{`Yield details for ${data?.contract_ticker_symbol}`}</h2>
+      <div className="font-semibold font-poppins text-[16px]">{`Yield details for ${data?.contract_ticker_symbol}`}</div>
 
       {/* data */}
       <div className="grid grid-cols-1 gap-10 w-full text-[14px] mt-5">
         {data?.defiYieldOptionsForToken?.map((item, index) => (
           <div
+            key={index}
             className={`${
               index !== data?.defiYieldOptionsForToken?.length && "mb-3"
             }`}

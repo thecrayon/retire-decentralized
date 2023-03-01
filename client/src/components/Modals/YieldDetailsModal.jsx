@@ -9,6 +9,7 @@ import {
   ModalHeader,
   ModalOverlay,
   Text,
+  Textarea,
 } from "@chakra-ui/react";
 
 import { useStateContext } from "../../context/ContextProvider";
