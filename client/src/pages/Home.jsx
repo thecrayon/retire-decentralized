@@ -1,5 +1,6 @@
 import React from "react";
 
+import Calculator from "../components/Calculator";
 import Card from "../components/Card";
 import PageContent from "../components/Layout/PageContent";
 import MyAssets from "../components/MyAssets";
@@ -27,7 +28,9 @@ const Home = () => {
         </Card>
 
         {/* RHS - Yields (depends on assets) */}
-        <Card title="Chart"></Card>
+        <Card title="Calculator">
+          <Calculator />
+        </Card>
       </PageContent>
     </>
   );

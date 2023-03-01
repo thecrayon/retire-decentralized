@@ -22,6 +22,12 @@ export const ContextProvider = ({ children }) => {
   // custom hook to get user token balances in wallet on eth mainnet
   const { fetchMyTokenBalances } = useAllBalances();
 
+  // calculator state
+  const [retirementCalculatorData, setRetirementCalculatorData] = useState({
+    yearsUntilRetire: 50,
+    annualReturnRate: 50,
+  });
+
   const { llamaFiURL } = CONSTANTS;
 
   const getDefiYieldOptions = async () => {
@@ -61,9 +67,6 @@ export const ContextProvider = ({ children }) => {
     }
   }, [userTokenBalances, defiYieldOptions])
 
-  console.log("userTokenBalancesWithInvestmentData", userTokenBalancesWithInvestmentData)
-  
-
   // check if user is on eth mainnet and open modal if not
   useEffect(() => {
     chain?.name !== "Ethereum" ? setModalOpen(true) : setModalOpen(false)
@@ -76,6 +79,8 @@ export const ContextProvider = ({ children }) => {
       userTokenBalancesWithInvestmentData,
       address,
       modalOpen,
+      retirementCalculatorData,
+      setRetirementCalculatorData,
     }}>
       {children}
     </StateContext.Provider>
