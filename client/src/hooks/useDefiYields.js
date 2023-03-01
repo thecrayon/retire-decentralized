@@ -8,7 +8,6 @@ const useDefiYields = () => {
     
     const fetchDefiYieldOptions = async () =>
     {
-        console.log("heredfds")
         setLoading(true);
 
        const result = await fetch("https://yields.llama.fi/pools")

@@ -1,4 +1,3 @@
-import {theme} from "./chakra/theme";
 import {
   modalConnectors,
   walletConnectProvider
@@ -8,28 +7,23 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import App from './App';
+import { theme } from "./chakra/theme";
 import './index.css';
 // TODO: change to desired chains
 import { ChakraProvider } from "@chakra-ui/react";
+import { registerLicense } from '@syncfusion/ej2-base';
 import { mainnet } from "wagmi/chains";
 import { ContextProvider } from "./context/ContextProvider";
-import { registerLicense } from '@syncfusion/ej2-base';
-
-
 import {
   EthereumClient
 } from "@web3modal/ethereum";
-
 import { Web3Modal } from "@web3modal/react";
-
-
-import { arbitrum, polygon } from "wagmi/chains";
 
 const Application = () => {
     // Registering Syncfusion license key
     registerLicense(process.env.REACT_APP_SYNCFUSION_LICENSE_KEY);
 
-    const chains = [arbitrum, mainnet, polygon];
+    const chains = [mainnet];
 
     // Wagmi client
     const { provider } = configureChains(chains, [

@@ -8,6 +8,16 @@ import { formatAddress } from "../helpers";
 
 const Home = () => {
   const { address } = useStateContext();
+
+  if (!address)
+    return (
+      <Card>
+        <div className="flex items-center justify-center">
+          <div className="mt-20 font-bold">Please connect a wallet</div>
+        </div>
+      </Card>
+    );
+
   return (
     <>
       <PageContent>
@@ -17,7 +27,7 @@ const Home = () => {
         </Card>
 
         {/* RHS - Yields (depends on assets) */}
-        <Card title="yields"></Card>
+        <Card title="Chart"></Card>
       </PageContent>
     </>
   );

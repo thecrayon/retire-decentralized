@@ -83,7 +83,6 @@ const RetirementCalculator = () => {
           return tokenBalance;
         }
       );
-      console.log("filteredDefiYieldOptions", filteredDefiYieldOptions);
       setFilteredYieldOptions(filteredDefiYieldOptions);
     }
   }, [tokenBalances, defiYieldOptions]);

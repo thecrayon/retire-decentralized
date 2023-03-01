@@ -44,8 +44,6 @@ const data = [
 const MyAssets = () => {
   const { userTokenBalances } = useStateContext();
 
-  console.log("userTokenBalances", userTokenBalances);
-
   return (
     <div>
       {userTokenBalances &&
