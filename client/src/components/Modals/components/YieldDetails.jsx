@@ -3,6 +3,15 @@ import React from "react";
 import { useStateContext } from "../../../context/ContextProvider";
 import { formatNumber } from "../../../helpers";
 import { styles } from "../../../styles";
+import { VscCheckAll } from "react-icons/vsc";
+
+const RecommendedProtocol = () => (
+  <div className="flex flex-row gap-3 font-poppins items-center justify-center">
+    <VscCheckAll className="text-primary text-[18px]" />
+    <div className="text-orange-500 text-md">recommended by retire decent</div>
+    <VscCheckAll className="text-primary text-[18px]" />
+  </div>
+);
 
 // TODO: finish this component
 // contract_name
@@ -18,9 +27,8 @@ import { styles } from "../../../styles";
 // apy
 // apyPct30D
 // ilRisk // illiquidity risk? can see right away
-
 const ProtocolYieldOption = (props) => (
-  <div key={props.project}>
+  <div key={props.project} className="">
     <div className="grid grid-cols-2">
       <div className="font-bold">Protocol</div>
       <div className="text-right">{props?.project}</div>
@@ -30,8 +38,8 @@ const ProtocolYieldOption = (props) => (
       <div className="text-right">{formatNumber(props?.tvlUsd)}</div>
     </div>
     <div className="grid grid-cols-2">
-      <div className="font-bold">APY 30D</div>
-      <div className="text-right">{formatNumber(props?.apyPct30D)}</div>
+      <div className="font-bold">APY</div>
+      <div className="text-right">{formatNumber(props?.apy)}</div>
     </div>
     <div className="grid grid-cols-2">
       <div className="font-bold">IL Risk</div>
@@ -55,8 +63,12 @@ const YieldDetails = () => {
             key={index}
             className={`${
               index !== data?.defiYieldOptionsForToken?.length && "mb-3"
-            }`}
+            } `}
           >
+            {/* recommended first option because it has the highest TVL */}
+            <div className={`${index !== 0 && "invisible"}`}>
+              <RecommendedProtocol />
+            </div>
             {/* display yield details for each protocol */}
             <ProtocolYieldOption key={index} {...item} />
             {/* give user option to deposit with that protocol */}
