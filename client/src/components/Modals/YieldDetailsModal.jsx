@@ -15,14 +15,13 @@ import YieldDetails from "./components/YieldDetails";
 
 const YieldDetailsModal = () => {
   const { yieldDetailsModal, setYieldDetailsModal } = useStateContext();
-
   const { data } = yieldDetailsModal;
 
   const handleClose = () =>
     setYieldDetailsModal((prev) => ({ ...prev, isOpen: false }));
 
   return (
-    <Modal isOpen={yieldDetailsModal.isOpen} onClose={handleClose} size="2xl">
+    <Modal isOpen={yieldDetailsModal.isOpen} onClose={handleClose} size="md">
       <ModalOverlay />
       <ModalContent>
         <ModalHeader textAlign="center" className="font-poppins">

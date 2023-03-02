@@ -1,9 +1,11 @@
 /* eslint-disable */
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { useAccount, useNetwork } from "wagmi";
+import { useAccount, useNetwork, usePrepareContractWrite, useContractWrite } from "wagmi";
+import { prepareWriteContract, writeContract,  } from '@wagmi/core'
 
 import useAllBalances from '../hooks/useAllBalances';
-import { CONSTANTS } from '../constants';
+import { AAVEVV3ETHCONTRACTADDRESS, CONSTANTS, LLAMAFIURL } from '../constants';
+import ABI from "./Web3/abi.json"
 
 const StateContext = createContext();
 
@@ -35,10 +37,8 @@ export const ContextProvider = ({ children }) => {
     annualReturnRate: 5,
   });
 
-  const { llamaFiURL } = CONSTANTS;
-
   const getDefiYieldOptions = async () => {
-    const result = await fetch(llamaFiURL);
+    const result = await fetch(LLAMAFIURL);
     const response = await result.json();
     return response;
   };
@@ -112,7 +112,19 @@ export const ContextProvider = ({ children }) => {
     else {
       chain?.name !== "Ethereum" ? setModalOpen(true) : setModalOpen(false)
     }
-  }, [chain, address])
+  }, [chain, address]);
+
+  // function for depositing eth into aave v3
+  const {config} = usePrepareContractWrite({
+    address: AAVEVV3ETHCONTRACTADDRESS,
+    abi: ABI,
+    chainId: 1,
+    // amount (ether), walletAddress, walletAddress(of person receiving aToken), referralCode // use 0 for development
+    functionName: "depositETH",
+    args: ["0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2", address, 0],
+  });
+
+  const { write } = useContractWrite(config);
 
   return (
     <StateContext.Provider value={{
@@ -125,6 +137,7 @@ export const ContextProvider = ({ children }) => {
       setRetirementCalculatorData,
       yieldDetailsModal,
       setYieldDetailsModal,
+      write,
     }}>
       {children}
     </StateContext.Provider>

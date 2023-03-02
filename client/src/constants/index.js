@@ -1,3 +1,2 @@
-export const CONSTANTS = { 
-    llamaFiURL: "https://yields.llama.fi/pools",
-}
+export const LLAMAFIURL="https://yields.llama.fi/pools";
+export const AAVEVV3ETHCONTRACTADDRESS="0xD322A49006FC828F9B5B37Ab215F99B4E5caB19C";
