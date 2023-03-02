@@ -2,7 +2,7 @@ import React from "react";
 import { useNetwork } from "wagmi";
 
 import Calculator from "../components/Calculator";
-import Card from "../components/Card";
+import CustomCard from "../components/CustomCard";
 import PageContent from "../components/Layout/PageContent";
 import YieldDetailsModal from "../components/Modals/YieldDetailsModal";
 import MyAssets from "../components/MyAssets";
@@ -16,7 +16,7 @@ const Home = () => {
   // If no address, show welcome message
   if (!address)
     return (
-      <Card>
+      <CustomCard>
         <div className="flex items-center justify-center">
           <div className="mt-20 grid grid-cols-1">
             Welcome to Retire Decent! <br /> <br /> To start on your journey to
@@ -24,7 +24,7 @@ const Home = () => {
             <span className="font-bold">Please connect a wallet</span>
           </div>
         </div>
-      </Card>
+      </CustomCard>
     );
 
   // If address, show assets and calculator
@@ -32,8 +32,8 @@ const Home = () => {
     <>
       <YieldDetailsModal />
       <PageContent>
-        {/* LHS - Your Assets */}
-        <Card
+        {/* LHS - User Wallet Assets */}
+        <CustomCard
           title={
             address &&
             `${formatAddress(
@@ -42,12 +42,12 @@ const Home = () => {
           }
         >
           <MyAssets />
-        </Card>
+        </CustomCard>
 
-        {/* RHS - Yields (depends on assets) */}
-        <Card title="Retirement calculator">
+        {/* RHS - Calculator */}
+        <CustomCard title="Retirement calculator">
           <Calculator />
-        </Card>
+        </CustomCard>
       </PageContent>
     </>
   );

@@ -3,11 +3,11 @@ import React from "react";
 
 const PageContent = ({ children }) => {
   return (
-    <Flex justify="center" p="20px 0px">
+    <Flex justify="center">
       <Flex
         width="100%"
         justify="center"
-        maxWidth="860px"
+        maxWidth="1024px"
         gap={{ base: 2 }}
         direction={{ base: "column", md: "row" }}
       >
@@ -19,6 +19,11 @@ const PageContent = ({ children }) => {
         {/* RHS */}
         <Flex direction="column" width="100%">
           {children && children[1]}
+
+          <Flex direction="row" width="100%" marginTop={3}>
+            {children && children[2]}
+            {children && children[3]}
+          </Flex>
         </Flex>
       </Flex>
     </Flex>

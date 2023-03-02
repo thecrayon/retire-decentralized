@@ -4,10 +4,10 @@ import React from "react";
 import { useStateContext } from "../../../context/ContextProvider";
 import { formatBalance } from "../../../helpers";
 import { styles } from "../../../styles";
-import Card from "../../Card";
+import CustomCard from "../../CustomCard";
 
 const DisplayAssets = (props) => {
-  const { setDrawerOpen, drawerOpen, setYieldDetailsModal } = useStateContext();
+  const { setYieldDetailsModal } = useStateContext();
 
   const handleOpenModal = () => {
     setYieldDetailsModal((prev) => ({
@@ -25,8 +25,8 @@ const DisplayAssets = (props) => {
   };
 
   return (
-    <Card title="">
-      <div className="grid grid-cols-1 font-poppins justify-end">
+    <CustomCard>
+      <div className="font-poppins">
         {/* logo / asset name */}
         <div className="flex flex-row items-center space-x-5">
           <div style={{ backgroundColor: "white" }}>
@@ -83,9 +83,8 @@ const DisplayAssets = (props) => {
             Details
           </button>
         </div>
-        <div className="mt-3 border border-b border-gray-300" />
       </div>
-    </Card>
+    </CustomCard>
   );
 };
 

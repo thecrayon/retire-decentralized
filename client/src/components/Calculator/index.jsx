@@ -10,7 +10,7 @@ const Calculator = () => {
   const { retirementCalculatorData } = useStateContext();
 
   return (
-    <div className="grid grid-cols-1 gap-10">
+    <div className="mx-2">
       <div>
         <div className="flex items-center">
           <h2 className="text-[14px] font-poppins">years</h2>
@@ -31,7 +31,7 @@ const Calculator = () => {
           toolTip="years"
         />
       </div>
-      <div>
+      <div className="mt-5">
         <div className="flex items-center">
           <h2 className="text-[14px] font-poppins">apy</h2>
           <Tooltip
@@ -52,7 +52,7 @@ const Calculator = () => {
         />
       </div>
 
-      <div className="grid grid-cols-1 font-poppins text-[14px]">
+      <div className="grid grid-cols-1 font-poppins text-[14px] mt-10">
         {/* TODO: clean this up. hard to read now*/}
         <p>
           your token balance of{" "}

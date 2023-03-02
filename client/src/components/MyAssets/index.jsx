@@ -7,8 +7,7 @@ import DisplayAssets from "./components/DisplayAssets";
 const MyAssets = () => {
   // TODO: add an alert if userTokenBalances total doesn't match userTokenBalancesWithInvestmentData total
   // this can happen if user has a token in their wallet that doesn't have data in the llama.fi API (e.g. a token that they've minted themselves)
-  const { userTokenBalances, userTokenBalancesWithInvestmentData } =
-    useStateContext();
+  const { userTokenBalancesWithInvestmentData } = useStateContext();
 
   return (
     <>
@@ -19,7 +18,7 @@ const MyAssets = () => {
           );
         })
       ) : (
-        <div className="flex items-center justify-center mt-20">
+        <div className="flex items-center justify-center">
           <Loader />
         </div>
       )}

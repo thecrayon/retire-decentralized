@@ -4,12 +4,13 @@ import { useStateContext } from "../../../context/ContextProvider";
 import { formatNumber } from "../../../helpers";
 import { styles } from "../../../styles";
 import { VscCheckAll } from "react-icons/vsc";
+import CustomCard from "../../CustomCard";
 
 const RecommendedProtocol = () => (
-  <div className="flex flex-row gap-3 font-poppins items-center justify-center">
-    <VscCheckAll className="text-primary text-[18px]" />
+  <div className="flex flex-row gap-3 font-poppins items-center justify-center mb-2">
+    <VscCheckAll className="text-primary" />
     <div className="text-orange-500 text-md">recommended by retire decent</div>
-    <VscCheckAll className="text-primary text-[18px]" />
+    <VscCheckAll className="text-primary" />
   </div>
 );
 
@@ -27,50 +28,44 @@ const RecommendedProtocol = () => (
 // apy
 // apyPct30D
 // ilRisk // illiquidity risk? can see right away
-const ProtocolYieldOption = (props) => (
-  <div key={props.project} className="">
-    <div className="grid grid-cols-2">
+const ProtocolYieldOption = ({ index, ...item }) => (
+  <div key={item.project}>
+    <div className="grid grid-cols-2 text-[14px]">
       <div className="font-bold">Protocol</div>
-      <div className="text-right">{props?.project}</div>
+      <div className="text-right">{item?.project}</div>
     </div>
     <div className="grid grid-cols-2">
       <div className="font-bold">TVL</div>
-      <div className="text-right">{formatNumber(props?.tvlUsd)}</div>
+      <div className="text-right">{formatNumber(item?.tvlUsd)}</div>
     </div>
     <div className="grid grid-cols-2">
       <div className="font-bold">APY</div>
-      <div className="text-right">{formatNumber(props?.apy)}</div>
+      <div className="text-right">{formatNumber(item?.apy)}</div>
     </div>
     <div className="grid grid-cols-2">
-      <div className="font-bold">IL Risk</div>
-      <div className="text-right">{props?.ilRisk}</div>
+      <div className="font-bold">Illiquidity Risk</div>
+      <div className="text-right">{item?.ilRisk}</div>
     </div>
   </div>
 );
 
-const YieldDetails = () => {
-  const { yieldDetailsModal } = useStateContext();
-  const { data } = yieldDetailsModal;
-
+const YieldDetails = ({ data }) => {
   return (
-    <div className="container mx-auto grid grid-cols-1">
-      <div className="font-semibold font-poppins text-[16px]">{`Yield details for ${data?.contract_ticker_symbol}`}</div>
-
-      {/* data */}
-      <div className="grid grid-cols-1 gap-10 w-full text-[14px] mt-5">
-        {data?.defiYieldOptionsForToken?.map((item, index) => (
+    <div className="w-4/5 container mx-auto font-poppins text-[14px]">
+      {data?.defiYieldOptionsForToken?.map((item, index) => (
+        <CustomCard>
           <div
             key={index}
             className={`${
-              index !== data?.defiYieldOptionsForToken?.length && "mb-3"
-            } `}
+              index === 0 && "ring-2 ring-orange-500 ring-offset-8"
+            }`}
           >
             {/* recommended first option because it has the highest TVL */}
             <div className={`${index !== 0 && "invisible"}`}>
               <RecommendedProtocol />
             </div>
             {/* display yield details for each protocol */}
-            <ProtocolYieldOption key={index} {...item} />
+            <ProtocolYieldOption key={index} index={index} {...item} />
             {/* give user option to deposit with that protocol */}
             <button
               name={`${data?.defiYieldOptionsForToken?.project}`}
@@ -79,8 +74,8 @@ const YieldDetails = () => {
               Deposit with {item?.project}
             </button>
           </div>
-        ))}
-      </div>
+        </CustomCard>
+      ))}
     </div>
   );
 };
