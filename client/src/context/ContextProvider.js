@@ -59,11 +59,16 @@ export const ContextProvider = ({ children }) => {
     
     if (userTokenBalances && defiYieldOptions) {
       const userTokenBalancesWithInvestmentData = userTokenBalances.map((userTokenBalance) => {
-        const defiYieldOptionsForToken = defiYieldOptions.filter((defiYieldOption) => 
+        let defiYieldOptionsForToken = defiYieldOptions.filter((defiYieldOption) => 
         defiYieldOption.symbol === userTokenBalance.contract_ticker_symbol && 
         defiYieldOption.chain === "Ethereum" && 
         defiYieldOption.apyBase !== null && 
         defiYieldOption.apyBase !== 0).slice(0,3)
+
+        // sort by apy
+        defiYieldOptionsForToken.sort((a, b) => {
+          return b.apy - a.apy;
+        });
 
         // TODO: sort by apy
         return {

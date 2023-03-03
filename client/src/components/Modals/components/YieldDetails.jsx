@@ -29,7 +29,7 @@ const ProtocolYieldOption = ({ index, ...item }) => (
     </div>
     <div className="grid grid-cols-2">
       <div className="font-bold">APY</div>
-      <div className="text-right">{formatNumber(item?.apy)}</div>
+      <div className="text-right">{formatNumber(item?.apy)}%</div>
     </div>
     <div className="grid grid-cols-2">
       <div className="font-bold">Illiquidity Risk</div>
