@@ -1,4 +1,5 @@
-import React from "react";
+import { Alert, AlertIcon, Button } from "@chakra-ui/react";
+import React, { useState } from "react";
 import { VscCheckAll } from "react-icons/vsc";
 
 import { formatNumber } from "../../../helpers";
@@ -36,9 +37,33 @@ const ProtocolYieldOption = ({ index, ...item }) => (
 );
 
 const YieldDetails = ({ data }) => {
-  const { depositETHOnAave } = useDepositOnAave();
+  const { depositETHOnAave, loading } = useDepositOnAave();
+  const [clickedButtonIndex, setClickedButtonIndex] = useState();
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleDepositClicked = async ({buttonIndex, projectName}) => {
+    console.log("buttonIndex", buttonIndex)
+    console.log("projectName", projectName)
+    setClickedButtonIndex(buttonIndex);
+    if (projectName !== "aave-v2") {
+      setErrorMessage("Only Eth on Aave V2 is supported at the moment");
+      setClickedButtonIndex();
+      return;
+    }
+
+    setErrorMessage("");
+
+
+    await depositETHOnAave();
+  };
   return (
     <div className="container mx-auto font-poppins text-[14px]">
+      {errorMessage && (
+      <Alert status='error'>
+        <AlertIcon />
+        {errorMessage}
+      </Alert>
+      )}
       {data?.defiYieldOptionsForToken?.map((item, index) => (
         <CustomCard>
           <div
@@ -48,20 +73,23 @@ const YieldDetails = ({ data }) => {
             }`}
           >
             {/* recommended first option because it has the highest TVL */}
-            <div className={`${index !== 0 && "invisible"}`}>
-              <RecommendedProtocol />
-            </div>
+            {index === 0 && <RecommendedProtocol />}
+
             {/* display yield details for each protocol */}
             <ProtocolYieldOption key={index} index={index} {...item} />
             {/* give user option to deposit with that protocol */}
-            <button
-              name={`${data?.defiYieldOptionsForToken?.project}`}
-              className={`mt-5 ${styles.primaryButton} w-full capitalize`}
+            <Button
+              name={`${item?.project}`}
+              backgroundColor="#3b82f6"
+              width="full"
+              mt={2}
+              color="white"
               disabled={item?.project !== "aave-v2"}
-              onClick={() => depositETHOnAave()}
+              onClick={() => handleDepositClicked({buttonIndex: index, projectName: item?.project})}
+              isLoading={loading && index === clickedButtonIndex}
             >
-              Deposit with {item?.project}
-            </button>
+              <span className="capitalize">Deposit with {item?.project}</span>
+            </Button>
           </div>
         </CustomCard>
       ))}

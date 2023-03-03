@@ -48,7 +48,7 @@ const SliderThumbWithTooltip = ({ name, xAxes, toolTip }) => {
       </SliderTrack>
       <Tooltip
         hasArrow
-        bg="blue.500"
+        bg="#3b82f6"
         color="white"
         placement="top"
         isOpen={showTooltip}

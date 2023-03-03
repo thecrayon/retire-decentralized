@@ -5,7 +5,7 @@ export const theme = extendTheme({
   colors: {
     brand: {
       100: "#FF#C00",
-      primary: "blue.500",
+      primary: "#3b82f6",
     },
   },
   fonts: {

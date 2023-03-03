@@ -17,7 +17,7 @@ const Calculator = () => {
           <Tooltip
             hasArrow
             label="years until retirement"
-            bg="blue.500"
+            bg="#3b82f6"
             color="white"
             shouldWrapChildren
             placement="top"
@@ -37,7 +37,7 @@ const Calculator = () => {
           <Tooltip
             hasArrow
             label="annual percentage yield"
-            bg="blue.500"
+            bg="#3b82f6"
             color="white"
             shouldWrapChildren
             placement="top"

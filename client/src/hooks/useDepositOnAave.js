@@ -12,7 +12,7 @@ const useDepositOnAave = () => {
 
     const { address } = useStateContext();
 
-    async function depositETHOnAave() {
+    const depositETHOnAave = async () => {
         let ethereum = window.ethereum;
     
         // Request account access if needed
@@ -36,14 +36,23 @@ const useDepositOnAave = () => {
     
         // TODO: change amountToDeposit to be dynamic
         const amountToDeposit = ethers.utils.parseEther("0.001")._hex; // deposit 1 ETH
-        const depositTx = await aaveContract.depositETH(
-            // TODO: change to constant after test is done
-          "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
-          address,
-          0,
-          { value: amountToDeposit }
-        );
-        await depositTx.wait();
+
+        setLoading(true);
+
+        try {
+          const depositTx = await aaveContract.depositETH(
+              // TODO: change to constant after test is done
+            "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+            address,
+            0,
+            { value: amountToDeposit }
+          );
+          await depositTx.wait();
+        } catch (error) {
+            console.log("depositOnAave error: ", error);
+            setError(error.message);
+        }
+        setLoading(false);
       }
 
     return {
