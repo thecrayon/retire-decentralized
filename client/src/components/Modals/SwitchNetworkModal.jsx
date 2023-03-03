@@ -8,8 +8,9 @@ import { useStateContext } from "../../context/ContextProvider";
 const SwitchNetworkModal = () => {
   const { modalOpen } = useStateContext();
 
-  // TODO: this is not working as expected
   const { switchNetworkAsync } = useSwitchNetwork();
+
+  // TODO: if !address then show a message to connect wallet first before switching network
 
   return (
     <Modal

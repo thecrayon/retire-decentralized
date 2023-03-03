@@ -70,7 +70,6 @@ export const ContextProvider = ({ children }) => {
           return b.apy - a.apy;
         });
 
-        // TODO: sort by apy
         return {
           ...userTokenBalance,
           defiYieldOptionsForToken,
