@@ -1,7 +1,6 @@
 /* eslint-disable */
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { useAccount, useNetwork, usePrepareContractWrite, useContractWrite } from "wagmi";
-import { prepareWriteContract, writeContract,  } from '@wagmi/core'
+import { useAccount, useNetwork, usePrepareContractWrite, useContractWrite, useSigner } from "wagmi";
 
 import useAllBalances from '../hooks/useAllBalances';
 import { AAVEVV3ETHCONTRACTADDRESS, CONSTANTS, LLAMAFIURL } from '../constants';
@@ -64,7 +63,9 @@ export const ContextProvider = ({ children }) => {
         defiYieldOption.symbol === userTokenBalance.contract_ticker_symbol && 
         defiYieldOption.chain === "Ethereum" && 
         defiYieldOption.apyBase !== null && 
-        defiYieldOption.apyBase !== 0).slice(0,3);
+        defiYieldOption.apyBase !== 0).slice(0,3)
+
+        // TODO: sort by apy
         return {
           ...userTokenBalance,
           defiYieldOptionsForToken,
@@ -114,18 +115,6 @@ export const ContextProvider = ({ children }) => {
     }
   }, [chain, address]);
 
-  // function for depositing eth into aave v3
-  const {config} = usePrepareContractWrite({
-    address: AAVEVV3ETHCONTRACTADDRESS,
-    abi: ABI,
-    chainId: 1,
-    // amount (ether), walletAddress, walletAddress(of person receiving aToken), referralCode // use 0 for development
-    functionName: "depositETH",
-    args: ["0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2", address, 0],
-  });
-
-  const { write } = useContractWrite(config);
-
   return (
     <StateContext.Provider value={{
       defiYieldOptions,
@@ -137,7 +126,6 @@ export const ContextProvider = ({ children }) => {
       setRetirementCalculatorData,
       yieldDetailsModal,
       setYieldDetailsModal,
-      write,
     }}>
       {children}
     </StateContext.Provider>

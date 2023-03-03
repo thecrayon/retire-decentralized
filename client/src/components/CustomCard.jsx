@@ -14,7 +14,6 @@ const CustomCard = ({ title, children, restStyles }) => {
           <Heading size="sm">{title}</Heading>
         </CardHeader>
       )}
-
       <CardBody>{children}</CardBody>
     </Card>
   );

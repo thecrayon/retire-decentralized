@@ -1,3 +1,4 @@
+import { Flex } from "@chakra-ui/react";
 import React from "react";
 import { useNetwork } from "wagmi";
 
@@ -18,9 +19,8 @@ const Home = () => {
     return (
       <CustomCard>
         <div className="flex items-center justify-center">
-          <div className="mt-20 grid grid-cols-1">
-            Welcome to Retire Decent! <br /> <br /> To start on your journey to
-            retiring decently, <br /> <br />
+          <div className="grid grid-cols-1">
+            Welcome to Regen! <br /> <br /> To get started on your crypto retirement journey, <br /> <br />
             <span className="font-bold">Please connect a wallet</span>
           </div>
         </div>
@@ -48,6 +48,10 @@ const Home = () => {
         <CustomCard title="Retirement calculator">
           <Calculator />
         </CustomCard>
+          <Flex direction="row" margin={1} >
+            <CustomCard>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint nobis voluptatibus animi? Laborum voluptatum, nesciunt tempora culpa ullam, perspiciatis, blanditiis incidunt sint suscipit unde cupiditate. Cupiditate eligendi labore voluptatem. Asperiores.</CustomCard>
+            <CustomCard>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint nobis voluptatibus animi? Laborum voluptatum, nesciunt tempora culpa ullam, perspiciatis, blanditiis incidunt sint suscipit unde cupiditate. Cupiditate eligendi labore voluptatem. Asperiores.</CustomCard>
+          </Flex>
       </PageContent>
     </>
   );

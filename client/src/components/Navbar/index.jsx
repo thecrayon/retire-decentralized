@@ -64,7 +64,7 @@ export default function WithSubnavigation() {
             className="cursor-pointer"
             onClick={() => navigate("/")}
           >
-            Retire Decent
+            Regen
           </Text>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>

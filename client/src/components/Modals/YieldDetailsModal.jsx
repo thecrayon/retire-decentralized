@@ -23,7 +23,7 @@ const YieldDetailsModal = () => {
   return (
     <Modal isOpen={yieldDetailsModal.isOpen} onClose={handleClose} size="md">
       <ModalOverlay />
-      <ModalContent>
+      <ModalContent width="full">
         <ModalHeader textAlign="center" className="font-poppins">
           {yieldDetailsModal.view === "details" &&
             `Yield Options for Your ${data.contract_ticker_symbol}`}
@@ -41,7 +41,7 @@ const YieldDetailsModal = () => {
             direction="column"
             align="center"
             justifyContent="center"
-            width="80%"
+            width="100%"
           >
             <Text className="w-full">
               <div className="w-[4/5] min-h-[400px] overflow-y-scroll">
