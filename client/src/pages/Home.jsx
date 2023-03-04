@@ -48,10 +48,6 @@ const Home = () => {
         <CustomCard title="Retirement calculator">
           <Calculator />
         </CustomCard>
-          <Flex direction="row" margin={1} >
-            <CustomCard>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint nobis voluptatibus animi? Laborum voluptatum, nesciunt tempora culpa ullam, perspiciatis, blanditiis incidunt sint suscipit unde cupiditate. Cupiditate eligendi labore voluptatem. Asperiores.</CustomCard>
-            <CustomCard>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint nobis voluptatibus animi? Laborum voluptatum, nesciunt tempora culpa ullam, perspiciatis, blanditiis incidunt sint suscipit unde cupiditate. Cupiditate eligendi labore voluptatem. Asperiores.</CustomCard>
-          </Flex>
       </PageContent>
     </>
   );

@@ -16,6 +16,7 @@ const useAllBalances = () => {
         setBalances(response.data.items);
 
         setLoading(false);
+        
         return response;
     };
 

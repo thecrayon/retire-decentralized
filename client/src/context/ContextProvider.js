@@ -13,6 +13,9 @@ export const ContextProvider = ({ children }) => {
   const [defiYieldOptions, setDefiYieldOptions] = useState();
   // user token balances
   const [userTokenBalances, setUserTokenBalances] = useState([]);
+  // user token balances with yield options
+  const [userTokenBalancesWithInvestmentData, setUserTokenBalancesWithInvestmentData] = useState([]);
+
   // Modal state
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -34,6 +37,8 @@ export const ContextProvider = ({ children }) => {
   const [retirementCalculatorData, setRetirementCalculatorData] = useState({
     yearsUntilRetire: 10,
     annualReturnRate: 5,
+    monthlyContribution: 0,
+    //initial amount
   });
 
   const getDefiYieldOptions = async () => {
@@ -53,7 +58,6 @@ export const ContextProvider = ({ children }) => {
     if (address) fetchMyTokenBalances(address).then(res => setUserTokenBalances(res?.data?.items));
   }, [address]);
 
-  const [userTokenBalancesWithInvestmentData, setUserTokenBalancesWithInvestmentData] = useState([]);
   // when userTokenBalances changes or defiYieldOptions changes, create a new array of objects with userTokenBalances and an array of all the defi yield options available for that token
   useEffect(() => {
     
@@ -105,7 +109,7 @@ export const ContextProvider = ({ children }) => {
 
       setRetirementCalculatorData({
         ...retirementCalculatorData,
-        annualReturnRate: weightedAverageApyForAllTokens.toFixed(2),
+        annualReturnRate: (weightedAverageApyForAllTokens.toFixed(2)),
         totalValueOfAllTokensInWallet,
       })
     }

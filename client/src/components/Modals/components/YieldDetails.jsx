@@ -4,7 +4,6 @@ import { VscCheckAll } from "react-icons/vsc";
 
 import { formatNumber } from "../../../helpers";
 import useDepositOnAave from "../../../hooks/useDepositOnAave";
-import { styles } from "../../../styles";
 import CustomCard from "../../CustomCard";
 
 const RecommendedProtocol = () => (
@@ -41,9 +40,9 @@ const YieldDetails = ({ data }) => {
   const [clickedButtonIndex, setClickedButtonIndex] = useState();
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleDepositClicked = async ({buttonIndex, projectName}) => {
-    console.log("buttonIndex", buttonIndex)
-    console.log("projectName", projectName)
+  const handleDepositClicked = async ({ buttonIndex, projectName }) => {
+    console.log("buttonIndex", buttonIndex);
+    console.log("projectName", projectName);
     setClickedButtonIndex(buttonIndex);
     if (projectName !== "aave-v2") {
       setErrorMessage("Only Eth on Aave V2 is supported at the moment");
@@ -53,16 +52,15 @@ const YieldDetails = ({ data }) => {
 
     setErrorMessage("");
 
-
     await depositETHOnAave();
   };
   return (
     <div className="container mx-auto font-poppins text-[14px]">
       {errorMessage && (
-      <Alert status='error'>
-        <AlertIcon />
-        {errorMessage}
-      </Alert>
+        <Alert status="error">
+          <AlertIcon />
+          {errorMessage}
+        </Alert>
       )}
       {data?.defiYieldOptionsForToken?.map((item, index) => (
         <CustomCard>
@@ -85,7 +83,12 @@ const YieldDetails = ({ data }) => {
               mt={2}
               color="white"
               disabled={item?.project !== "aave-v2"}
-              onClick={() => handleDepositClicked({buttonIndex: index, projectName: item?.project})}
+              onClick={() =>
+                handleDepositClicked({
+                  buttonIndex: index,
+                  projectName: item?.project,
+                })
+              }
               isLoading={loading && index === clickedButtonIndex}
             >
               <span className="capitalize">Deposit with {item?.project}</span>
