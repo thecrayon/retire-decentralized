@@ -11,7 +11,9 @@ const CustomCard = ({ title, children, restStyles }) => {
     >
       {title && (
         <CardHeader>
-          <Heading size="sm">{title}</Heading>
+          <Heading className="capitalize" size="sm">
+            {title}
+          </Heading>
         </CardHeader>
       )}
       <CardBody>{children}</CardBody>

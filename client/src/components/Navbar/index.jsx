@@ -10,6 +10,7 @@ import {
   Flex,
   Icon,
   IconButton,
+  Image,
   Link,
   Popover,
   PopoverContent,
@@ -20,9 +21,7 @@ import {
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
-
 import { useNavigate } from "react-router-dom";
-
 import { Web3Button } from "@web3modal/react";
 
 export default function WithSubnavigation() {

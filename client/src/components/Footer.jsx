@@ -10,6 +10,8 @@ import {
 } from "@chakra-ui/react";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 
+import RegenLogo from "../assets/regen-retire.png";
+
 const Logo = (props) => {
   return (
     <svg
@@ -65,7 +67,11 @@ export default function SmallCentered() {
         justify={"center"}
         align={"center"}
       >
-        <Logo />
+        <img
+          src={RegenLogo}
+          alt="regen-logo"
+          className="rounded-lg w-[100px] h-[100px]"
+        />
       </Container>
 
       <Box
