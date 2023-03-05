@@ -101,15 +101,16 @@ const Calculator = () => {
       <div className="grid grid-cols-1 font-poppins text-[14px] mt-10">
         {/* TODO: clean this up. hard to read now*/}
         <p className="leading-7 mx-2">
-          your token balance of{" "}
+          Your token balance of{" "}
           <span className="font-bold">
             $
             {retirementCalculatorData?.totalValueOfAllTokensInWallet?.toFixed(
               2
-            )}{" "}
+            )}
+            ,{" "}
           </span>{" "}
           <span>
-            ,with a{" "}
+            with a{" "}
             <span className="font-bold">
               ${retirementCalculatorData?.monthlyContribution}/month
             </span>{" "}
@@ -117,7 +118,7 @@ const Calculator = () => {
           </span>
           at an annual rate of return of{" "}
           <span className="font-bold">
-            {retirementCalculatorData?.annualReturnRate}%
+            {retirementCalculatorData?.annualReturnRate}%,
             <Tooltip
               hasArrow
               label="compounded monthly"
@@ -141,7 +142,7 @@ const Calculator = () => {
           </span>{" "}
           years{" "}
           <span className="font-bold">
-            ({calculateEndDate(retirementCalculatorData?.yearsUntilRetire)})
+            ({calculateEndDate(retirementCalculatorData?.yearsUntilRetire)}).
           </span>
         </p>
       </div>
