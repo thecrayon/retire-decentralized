@@ -9,7 +9,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { configureChains, createClient, WagmiConfig } from "wagmi";
-import { mainnet } from "wagmi/chains";
+import { mainnet, avalancheFuji } from "wagmi/chains";
 
 import App from './App';
 import { theme } from "./chakra/theme";
@@ -20,7 +20,7 @@ const Application = () => {
     // Registering Syncfusion license key
     registerLicense(process.env.REACT_APP_SYNCFUSION_LICENSE_KEY);
 
-    const chains = [mainnet];
+    const chains = [mainnet, avalancheFuji];
 
     // Wagmi client
     const { provider } = configureChains(chains, [

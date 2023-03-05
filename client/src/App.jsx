@@ -5,9 +5,10 @@ import { Footer, Navbar } from "./components";
 import SwitchNetworkModal from "./components/Modals/SwitchNetworkModal";
 import { useStateContext } from "./context/ContextProvider";
 import { Home } from "./pages";
+import RetirementAccount from "./pages/RetirementAccount";
 
 const App = () => {
-  const { modalOpen, drawerOpen } = useStateContext();
+  const { modalOpen } = useStateContext();
   return (
     <div className="flex relative">
       <div className="fixed z-10 w-full">
@@ -20,7 +21,7 @@ const App = () => {
           <Routes>
             <Route path="*" element={<Home />} />
             <Route path="/" element={<Home />} />
-            <Route path="/" element={<Home />} />
+            <Route path="/retirement-account" element={<RetirementAccount />} />
           </Routes>
         </div>
 

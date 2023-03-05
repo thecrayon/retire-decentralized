@@ -22,3 +22,17 @@ export const calculateEndDate = (years) => {
   return endYearString;
 }
 
+export const formatDate = (date) => {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date(date).toLocaleDateString(undefined, options);
+};
+
+export const isNewTransaction = (date) => {
+  const currentDate = new Date();
+  const transactionDate = new Date(date);
+  const diffTime = Math.abs(currentDate - transactionDate);
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  // return true if transaction is less than 6 hours old // TODO: change to <1 day after hackathon
+  return diffDays <= 0.25;
+};
+

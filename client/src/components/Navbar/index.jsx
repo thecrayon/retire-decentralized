@@ -253,7 +253,7 @@ const NAV_ITEMS = [
     href: "/",
   },
   {
-    label: "How It Works",
-    href: "/how-it-works",
+    label: "Retirement Account",
+    href: "/retirement-account",
   },
 ];

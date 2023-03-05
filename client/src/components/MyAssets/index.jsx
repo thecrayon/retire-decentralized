@@ -2,7 +2,7 @@ import React from "react";
 
 import { useStateContext } from "../../context/ContextProvider";
 import Loader from "../Loader";
-import DisplayAssets from "./components/DisplayAssets";
+import Asset from "./components/Asset";
 
 const MyAssets = () => {
   // TODO: add an alert if userTokenBalances total doesn't match userTokenBalancesWithInvestmentData total
@@ -13,9 +13,7 @@ const MyAssets = () => {
     <>
       {userTokenBalancesWithInvestmentData.length > 0 ? (
         userTokenBalancesWithInvestmentData.map((token) => {
-          return (
-            <DisplayAssets key={token.contract_ticker_symbol} {...token} />
-          );
+          return <Asset key={token.contract_ticker_symbol} {...token} />;
         })
       ) : (
         <div className="flex items-center justify-center">

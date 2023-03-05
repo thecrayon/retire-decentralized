@@ -2,7 +2,7 @@
 import { ethers } from 'ethers';
 import { useState } from 'react';
 
-import AaveABI from '../context/Web3/abi.json';
+import AaveABI from '../context/Web3/AaveABI.json';
 import { useStateContext } from '../context/ContextProvider';
 import { AAVEVV3ETHCONTRACTADDRESS } from '../constants';
 

@@ -41,8 +41,6 @@ const YieldDetails = ({ data }) => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleDepositClicked = async ({ buttonIndex, projectName }) => {
-    console.log("buttonIndex", buttonIndex);
-    console.log("projectName", projectName);
     setClickedButtonIndex(buttonIndex);
     if (projectName !== "aave-v2") {
       setErrorMessage("Only Eth on Aave V2 is supported at the moment");

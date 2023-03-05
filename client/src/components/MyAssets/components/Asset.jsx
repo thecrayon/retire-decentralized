@@ -6,7 +6,7 @@ import { formatBalance } from "../../../helpers";
 import { styles } from "../../../styles";
 import CustomCard from "../../CustomCard";
 
-const DisplayAssets = (props) => {
+const Asset = (props) => {
   const { setYieldDetailsModal } = useStateContext();
 
   const handleOpenModal = () => {
@@ -88,4 +88,4 @@ const DisplayAssets = (props) => {
   );
 };
 
-export default DisplayAssets;
+export default Asset;

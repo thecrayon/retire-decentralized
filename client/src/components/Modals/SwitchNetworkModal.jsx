@@ -4,6 +4,7 @@ import { useSwitchNetwork } from "wagmi";
 
 import { styles } from "../../styles";
 import { useStateContext } from "../../context/ContextProvider";
+import { Button } from "@chakra-ui/react";
 
 const SwitchNetworkModal = () => {
   const { modalOpen } = useStateContext();
@@ -11,7 +12,6 @@ const SwitchNetworkModal = () => {
   const { switchNetworkAsync } = useSwitchNetwork();
 
   // TODO: if !address then show a message to connect wallet first before switching network
-
   return (
     <Modal
       isOpen={modalOpen}
@@ -19,12 +19,13 @@ const SwitchNetworkModal = () => {
       overlayClassName="Overlay"
       ariaHideApp={false}
     >
-      <button
-        className={styles.primaryButton}
+      <Button
+        backgroundColor="#3b82f6"
+        color="white"
         onClick={async () => switchNetworkAsync(1)}
       >
         Switch to Ethereum Mainnet
-      </button>
+      </Button>
     </Modal>
   );
 };

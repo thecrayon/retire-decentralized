@@ -10,21 +10,24 @@ const Calculator = () => {
   const { retirementCalculatorData } = useStateContext();
   const [futureValue, setfutureValue] = useState(0);
 
-  console.log("future value", futureValue)
-
   const calculateFutureValue = () => {
-    const monthlyYield = (Number(retirementCalculatorData.annualReturnRate) / 100) / 12;
+    const monthlyYield =
+      Number(retirementCalculatorData.annualReturnRate) / 100 / 12;
     const totalMonths = retirementCalculatorData.yearsUntilRetire * 12;
-    const futureValue = (retirementCalculatorData?.totalValueOfAllTokensInWallet) * (1 + monthlyYield) ** totalMonths + retirementCalculatorData.monthlyContribution * ((1 + monthlyYield) ** totalMonths - 1) / monthlyYield;
-    return futureValue
-  }
+    const futureValue =
+      retirementCalculatorData?.totalValueOfAllTokensInWallet *
+        (1 + monthlyYield) ** totalMonths +
+      (retirementCalculatorData.monthlyContribution *
+        ((1 + monthlyYield) ** totalMonths - 1)) /
+        monthlyYield;
+    return futureValue;
+  };
 
   useEffect(() => {
     const res = calculateFutureValue();
-    // format to two decimals and commas 
-    setfutureValue(formatNumber((res)));
-  }, [retirementCalculatorData])
-  
+    // format to two decimals and commas
+    setfutureValue(formatNumber(res));
+  }, [retirementCalculatorData]);
 
   // TODO: add reset button
   // TODO: retirement summary
@@ -71,7 +74,7 @@ const Calculator = () => {
           toolTip="% apy"
         />
       </div>
-      
+
       <div className="mt-5">
         <div className="flex items-center">
           <h2 className="text-[14px] font-poppins">monthly contribution</h2>
@@ -103,7 +106,14 @@ const Calculator = () => {
               2
             )}{" "}
           </span>{" "}
-          <span>,with a <span className="font-bold">${retirementCalculatorData?.monthlyContribution}/month</span> contribution, </span>at an annual rate of return of{" "}
+          <span>
+            ,with a{" "}
+            <span className="font-bold">
+              ${retirementCalculatorData?.monthlyContribution}/month
+            </span>{" "}
+            contribution,{" "}
+          </span>
+          at an annual rate of return of{" "}
           <span className="font-bold">
             {retirementCalculatorData?.annualReturnRate}%{" "}
           </span>{" "}

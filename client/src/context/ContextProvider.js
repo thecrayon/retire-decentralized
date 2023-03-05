@@ -1,10 +1,9 @@
 /* eslint-disable */
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { useAccount, useNetwork, usePrepareContractWrite, useContractWrite, useSigner } from "wagmi";
+import { useAccount, useNetwork } from "wagmi";
 
+import { LLAMAFIURL } from '../constants';
 import useAllBalances from '../hooks/useAllBalances';
-import { AAVEVV3ETHCONTRACTADDRESS, CONSTANTS, LLAMAFIURL } from '../constants';
-import ABI from "./Web3/abi.json"
 
 const StateContext = createContext();
 
@@ -119,12 +118,13 @@ export const ContextProvider = ({ children }) => {
   useEffect(() => {
     if (!address) return;
     else {
-      chain?.name !== "Ethereum" ? setModalOpen(true) : setModalOpen(false)
+      chain?.name !== "Ethereum" && chain?.name !== "Avalanche Fuji" ? setModalOpen(true) : setModalOpen(false)
     }
   }, [chain, address]);
 
   return (
     <StateContext.Provider value={{
+      chain,
       defiYieldOptions,
       userTokenBalances,
       userTokenBalancesWithInvestmentData,
