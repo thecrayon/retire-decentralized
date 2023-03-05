@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNetwork } from "wagmi";
 
 import Calculator from "../components/Calculator";
 import CustomCard from "../components/CustomCard";

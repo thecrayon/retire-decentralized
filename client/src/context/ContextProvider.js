@@ -24,13 +24,6 @@ export const ContextProvider = ({ children }) => {
     data: {},
   });
 
-  // Deposit details modal
-  const [depositDetailsModal, setDepositDetailsModal] = useState({
-    isOpen: false,
-    view: "details",
-    data: {},
-  });
-
   // WAGMI hooks
   const { address } = useAccount();
   const {chain} = useNetwork();
@@ -138,8 +131,6 @@ export const ContextProvider = ({ children }) => {
       setRetirementCalculatorData,
       yieldDetailsModal,
       setYieldDetailsModal,
-      depositDetailsModal,
-      setDepositDetailsModal,
     }}>
       {children}
     </StateContext.Provider>

@@ -1,23 +1,26 @@
-import { Flex, Image, Stack } from "@chakra-ui/react";
+import { Image } from "@chakra-ui/react";
 import React from "react";
-import { FaRegMoneyBillAlt } from "react-icons/fa";
 
+import AvalancheLogo from "../../../assets/avalanche-avax-logo.png";
 import {
   decodeDepositData,
   formatAddress,
   formatBalance,
   formatDate,
+  formatNumber,
 } from "../../../helpers";
 import { styles } from "../../../styles";
 import CustomCard from "../../CustomCard";
-import AvalancheLogo from "../../../assets/avalanche-avax-logo.png";
+import { useStateContext } from "../../../context/ContextProvider";
 
 const Deposit = ({ depositDate, ...tx }) => {
-  const date = formatDate(depositDate);
   const receiverAddress = decodeDepositData(tx.log_events[0].raw_log_data);
 
-  const handleOpenModal = () => {};
+  console.log(tx);
 
+  const handleViewTxReceipt = () => {
+    window.open(`https://testnet.snowtrace.io/tx/${tx.tx_hash}`, "_blank");
+  };
   return (
     <CustomCard>
       <div className="font-poppins">
@@ -36,24 +39,29 @@ const Deposit = ({ depositDate, ...tx }) => {
           </div>
         </div>
 
-        {/* Quantity */}
+        {/* To address */}
         <div className="mt-5 grid grid-cols-2 grid-rows-1 w-full text-[14px]">
           <h3 className="font-bold">To</h3>
           <div className="text-right">
             {formatAddress(receiverAddress?.[1])}
           </div>
         </div>
-        {/* USD Balance */}
+        {/* total usd amount (including gas. minimal on avalanche) */}
+        <div className="mt-5 grid grid-cols-2 grid-rows-1 w-full text-[14px]">
+          <h3 className="font-bold">USD Total</h3>
+          <div className="text-right">${formatNumber(tx?.value_quote)}</div>
+        </div>
+        {/* Avax amount */}
         <div className="mt-5 grid grid-cols-2 grid-rows-1 w-full text-[14px]">
           <h3 className="font-bold">Amount</h3>
           <div className="text-right">{formatBalance(tx?.value, 18)} avax</div>
         </div>
         <button
           className={`mt-5 ${styles.secondaryButton} w-full`}
-          onClick={handleOpenModal}
+          onClick={handleViewTxReceipt}
           name="details"
         >
-          Details
+          View Receipt
         </button>
       </div>
     </CustomCard>
