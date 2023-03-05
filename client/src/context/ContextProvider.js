@@ -16,7 +16,6 @@ export const ContextProvider = ({ children }) => {
   // user token balances with yield options
   const [userTokenBalancesWithInvestmentData, setUserTokenBalancesWithInvestmentData] = useState([]);
 
-
   // Yield details modal
   const [yieldDetailsModal, setYieldDetailsModal] = useState({
     isOpen: false,
@@ -60,9 +59,8 @@ export const ContextProvider = ({ children }) => {
 
   // when userTokenBalances changes or defiYieldOptions changes, create a new array of objects with userTokenBalances and an array of all the defi yield options available for that token
   useEffect(() => {
-    
     if (userTokenBalances && defiYieldOptions) {
-      const userTokenBalancesWithInvestmentData = userTokenBalances.map((userTokenBalance) => {
+      let userTokenBalancesWithInvestmentData = userTokenBalances.map((userTokenBalance) => {
         let defiYieldOptionsForToken = defiYieldOptions.filter((defiYieldOption) => 
         defiYieldOption.symbol === userTokenBalance.contract_ticker_symbol && 
         defiYieldOption.chain === "Ethereum" && 
@@ -79,6 +77,17 @@ export const ContextProvider = ({ children }) => {
           defiYieldOptionsForToken,
         }
       })
+
+      // TODO: remove after hackathon. This is only to demonstrate our integration with aave-v3 so user can deploy idle tokens directly into aave from our site
+      userTokenBalancesWithInvestmentData = userTokenBalancesWithInvestmentData.map((userTokenBalanceWithInvestmentData) => {
+        if (userTokenBalanceWithInvestmentData.contract_ticker_symbol === "ETH") {
+          const aaveV3 = defiYieldOptions.find((defiYieldOption) => defiYieldOption.project === "aave-v3" && defiYieldOption.chain === "Ethereum");
+          userTokenBalanceWithInvestmentData.defiYieldOptionsForToken.push(aaveV3);
+        }
+        return userTokenBalanceWithInvestmentData;
+      })
+      
+
       setUserTokenBalancesWithInvestmentData(userTokenBalancesWithInvestmentData);
     }
   }, [userTokenBalances, defiYieldOptions]);

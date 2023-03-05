@@ -1,5 +1,5 @@
 import { Alert, AlertIcon, Button } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { VscCheckAll } from "react-icons/vsc";
 
 import { formatNumber } from "../../../helpers";
@@ -39,11 +39,14 @@ const YieldDetails = ({ data }) => {
   const { depositETHOnAave, loading } = useDepositOnAave();
   const [clickedButtonIndex, setClickedButtonIndex] = useState();
   const [errorMessage, setErrorMessage] = useState("");
+  const ref = useRef();
 
   const handleDepositClicked = async ({ buttonIndex, projectName }) => {
     setClickedButtonIndex(buttonIndex);
-    if (projectName !== "aave-v2") {
-      setErrorMessage("Only Eth on Aave V2 is supported at the moment");
+    if (projectName !== "aave-v3") {
+      // scroll to ref
+      ref.current.scrollIntoView({ behavior: "smooth" });
+      setErrorMessage("Only Eth on Aave V3 is supported at the moment");
       setClickedButtonIndex();
       return;
     }
@@ -53,7 +56,7 @@ const YieldDetails = ({ data }) => {
     await depositETHOnAave();
   };
   return (
-    <div className="container mx-auto font-poppins text-[14px]">
+    <div className="container mx-auto font-poppins text-[14px]" ref={ref}>
       {errorMessage && (
         <Alert status="error">
           <AlertIcon />
@@ -80,7 +83,7 @@ const YieldDetails = ({ data }) => {
               width="full"
               mt={5}
               color="white"
-              disabled={item?.project !== "aave-v2"}
+              disabled={item?.project !== "aave-v3" || item?.symbol !== "ETH"}
               onClick={() =>
                 handleDepositClicked({
                   buttonIndex: index,
