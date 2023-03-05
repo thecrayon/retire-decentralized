@@ -18,6 +18,10 @@ If you want to test this locally, follow the next few steps:
 - Install dependencies using: `npm install`
 - Run the dev server which will create the site and update automatically when you make changes: `npm start`
 - Go to `http://localhost:3000/` in your browser to view the site.
+- You will also need the following API keys:
+  -WEB3_MODAL_PROJECT_ID = WalletConnect: https://cloud.walletconnect.com/app
+  -COVALENT_API_KEY: https://www.covalenthq.com/docs/unified-api/setup/
+  -INFURA_API_KEY: https://app.infura.io/dashboard
 
 ## Bounties We Pursued (in alphabetical order)
 
