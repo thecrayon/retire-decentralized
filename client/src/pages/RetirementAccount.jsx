@@ -1,27 +1,42 @@
-import { Button } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import CustomCard from "../components/CustomCard";
-import EmployeeRetireView from "../components/Retire/EmployeeRetireView";
-import EmployerDeposit from "../components/EmployerDeposit";
-import EmployerRetireView from "../components/Retire/EmployerRetireView";
 import PageContent from "../components/Layout/PageContent";
-import useRetirementAccount from "../hooks/useRetirementAccount";
+import SwitchNetworkModal from "../components/Modals/SwitchNetworkModal";
+import EmployeeRetireView from "../components/Retire/EmployeeRetireView";
+import EmployerRetireView from "../components/Retire/EmployerRetireView";
+import { useStateContext } from "../context/ContextProvider";
+
 const RetirementAccount = () => {
+  const [open, setOpen] = useState(false);
+  const { chain } = useStateContext();
+
+  useEffect(() => {
+    if (chain.name !== "Avalanche Fuji") setOpen(true);
+    return () => setOpen(false);
+  }, [chain]);
+
   return (
-    <PageContent>
-      {/* LHS - Employer Deposit */}
-      <CustomCard title="Employer 401k Deposit">
-        {/* <EmployerDeposit /> */}
-        <EmployerRetireView />
-      </CustomCard>
+    <>
+      <SwitchNetworkModal
+        open={open}
+        title="Switch To Avalanche Fuji Testnet"
+        chainId={43113}
+      />
+      <PageContent>
+        {/* LHS - Employer Deposit */}
+        <CustomCard title="Employer 401k Deposit">
+          {/* <EmployerDeposit /> */}
+          <EmployerRetireView />
+        </CustomCard>
 
-      {/* RHS - Employee 401k Account Balance and transaction summaries */}
+        {/* RHS - Employee 401k Account Balance and transaction summaries */}
 
-      <CustomCard title="Employee 401k View">
-        <EmployeeRetireView />
-      </CustomCard>
-    </PageContent>
+        <CustomCard title="Employee 401k View">
+          <EmployeeRetireView />
+        </CustomCard>
+      </PageContent>
+    </>
   );
 };
 

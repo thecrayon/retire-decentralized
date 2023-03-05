@@ -16,9 +16,6 @@ export const ContextProvider = ({ children }) => {
   // user token balances with yield options
   const [userTokenBalancesWithInvestmentData, setUserTokenBalancesWithInvestmentData] = useState([]);
 
-  // Modal state
-  const [modalOpen, setModalOpen] = useState(false);
-
   // Yield details modal
   const [yieldDetailsModal, setYieldDetailsModal] = useState({
     isOpen: false,
@@ -32,6 +29,8 @@ export const ContextProvider = ({ children }) => {
   
   // custom hook to get user token balances in wallet on eth mainnet
   const { fetchMyTokenBalances } = useAllBalances();
+
+  const navigate = useNavigate();
 
   // calculator state
   const [retirementCalculatorData, setRetirementCalculatorData] = useState({
@@ -115,20 +114,11 @@ export const ContextProvider = ({ children }) => {
     }
   }, [userTokenBalancesWithInvestmentData]);
 
-  // check if user is on eth mainnet and open modal if not
+// if no address is set, redirect to home page
   useEffect(() => {
-    if (!address) return;
-    else {
-      chain?.name !== "Ethereum" && chain?.name !== "Avalanche Fuji" ? setModalOpen(true) : setModalOpen(false)
-    }
-  }, [chain, address]);
-
-  // route user to home page whenever there is no address
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (!address) navigate('/');
+    if (!address) navigate("/");
   }, [address]);
-
+  
   return (
     <StateContext.Provider value={{
       chain,
@@ -136,7 +126,6 @@ export const ContextProvider = ({ children }) => {
       userTokenBalances,
       userTokenBalancesWithInvestmentData,
       address,
-      modalOpen,
       retirementCalculatorData,
       setRetirementCalculatorData,
       yieldDetailsModal,

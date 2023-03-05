@@ -3,13 +3,12 @@ import { Route, Routes } from "react-router-dom";
 
 import { Footer, Navbar } from "./components";
 import CustomCard from "./components/CustomCard";
-import SwitchNetworkModal from "./components/Modals/SwitchNetworkModal";
 import { useStateContext } from "./context/ContextProvider";
 import { Home } from "./pages";
 import RetirementAccount from "./pages/RetirementAccount";
 
 const App = () => {
-  const { modalOpen, address } = useStateContext();
+  const { address } = useStateContext();
   return (
     <div className="flex relative">
       <div className="fixed z-10 w-full">
@@ -19,7 +18,6 @@ const App = () => {
       <div className="container mx-auto overflow-hidden mt-20">
         {address ? (
           <div className="min-h-screen">
-            {modalOpen && <SwitchNetworkModal />}
             <Routes>
               <Route path="*" element={<Home />} />
               <Route path="/" element={<Home />} />

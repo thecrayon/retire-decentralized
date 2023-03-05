@@ -67,7 +67,7 @@ export default function WithSubnavigation() {
             <Image
               src={RegenLogo}
               alt="regen-logo"
-              className="rounded-[12px] w-[50px] h-[50px] object-contain mr-1 hover:cursor-pointer"
+              className="rounded-[12px] w-[45px] h-[45px] object-contain mr-1 hover:cursor-pointer"
               onClick={() => navigate("/")}
             />
 
