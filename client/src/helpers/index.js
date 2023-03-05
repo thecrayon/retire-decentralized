@@ -24,7 +24,10 @@ export const calculateEndDate = (years) => {
 
 export const formatDate = (date) => {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  return new Date(date).toLocaleDateString(undefined, options);
+  // add 1 day to date to account for timezone difference
+  const newDate = new Date(date);
+  newDate.setDate(newDate.getDate() + 1);
+  return newDate.toLocaleDateString('en-US', options);
 };
 
 export const isNewTransaction = (date) => {

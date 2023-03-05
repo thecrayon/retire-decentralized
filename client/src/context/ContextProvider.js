@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAccount, useNetwork } from "wagmi";
 
 import { LLAMAFIURL } from '../constants';
@@ -67,7 +68,7 @@ export const ContextProvider = ({ children }) => {
         defiYieldOption.chain === "Ethereum" && 
         defiYieldOption.apyBase !== null && 
         defiYieldOption.apyBase !== 0).slice(0,3)
-
+      
         // sort by apy
         defiYieldOptionsForToken.sort((a, b) => {
           return b.apy - a.apy;
@@ -121,6 +122,12 @@ export const ContextProvider = ({ children }) => {
       chain?.name !== "Ethereum" && chain?.name !== "Avalanche Fuji" ? setModalOpen(true) : setModalOpen(false)
     }
   }, [chain, address]);
+
+  // route user to home page whenever there is no address
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!address) navigate('/');
+  }, [address]);
 
   return (
     <StateContext.Provider value={{

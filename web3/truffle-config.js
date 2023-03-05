@@ -1,9 +1,6 @@
 require('dotenv').config();
-const mnemonic = process.env["MNEMONIC"];
-const infuraAPI = process.env["INFURA_API"];
- 
-const HDWalletProvider = require('@truffle/hdwallet-provider');
-const snowtraceApiKey = process.env.AVAX_API_KEY;
+
+const snowtraceApiKey = process.env.INFURA_AVAX_API_KEY;
 
 module.exports = {
   // truffle dashboard run truffle migrate --network dashboard
@@ -23,13 +20,11 @@ module.exports = {
      network_id: "*",       // Any network (default: none)
     },
     goerli: {
-      provider: () => new HDWalletProvider(mnemonic, `https://goerli.infura.io/v3/${infuraAPI}`),
       network_id: 5,       // Goerli's id
       chain_id: 5
     },
 
     avalancheFuji: {
-      // provider: () => new HDWalletProvider(mnemonic, ``),
       network_id: 5,       // avalancheFuji's id
       chain_id: 43113
     }

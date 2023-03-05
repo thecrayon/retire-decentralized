@@ -1,4 +1,3 @@
-import { Flex } from "@chakra-ui/react";
 import React from "react";
 import { useNetwork } from "wagmi";
 
@@ -14,20 +13,6 @@ const Home = () => {
   const { address } = useStateContext();
   const { chain } = useNetwork();
 
-  // If no address, show welcome message
-  if (!address)
-    return (
-      <CustomCard>
-        <div className="flex items-center justify-center">
-          <div className="grid grid-cols-1">
-            Welcome to Regen! <br /> <br /> To get started on your crypto retirement journey, <br /> <br />
-            <span className="font-bold">Please connect a wallet</span>
-          </div>
-        </div>
-      </CustomCard>
-    );
-
-  // If address, show assets and calculator
   return (
     <>
       <YieldDetailsModal />

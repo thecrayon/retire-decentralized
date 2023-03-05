@@ -2,13 +2,14 @@ import {
   Box,
   chakra,
   Container,
-  Link,
+  Image,
   Stack,
   Text,
   useColorModeValue,
   VisuallyHidden,
 } from "@chakra-ui/react";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 import RegenLogo from "../assets/regen-retire.png";
 
@@ -57,6 +58,8 @@ const SocialButton = ({ children, label, href }) => {
 };
 
 export default function SmallCentered() {
+  const navigate = useNavigate();
+
   return (
     <Box color={useColorModeValue("gray.700", "gray.200")}>
       <Container
@@ -67,10 +70,14 @@ export default function SmallCentered() {
         justify={"center"}
         align={"center"}
       >
-        <img
+        <Image
           src={RegenLogo}
           alt="regen-logo"
-          className="rounded-[12px] w-[100px] h-[100px] object-contain"
+          className="rounded-[12px] w-[100px] h-[100px] object-contain hover:cursor-pointer"
+          onClick={() => {
+            window.scrollTo(0, 0);
+            navigate("/");
+          }}
         />
       </Container>
 

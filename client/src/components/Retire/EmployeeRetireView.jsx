@@ -3,10 +3,11 @@ import { REGENRETIRECONTRACTADDRESS } from "../../constants";
 import { useStateContext } from "../../context/ContextProvider";
 
 import useTransactions from "../../hooks/useTransactions";
+import Loader from "../Loader";
 import Deposit from "./components/Deposit";
 
 const EmployeeRetireView = () => {
-  const { fetchTransactions, transactions } = useTransactions();
+  const { fetchTransactions, transactions, loading } = useTransactions();
   const { address } = useStateContext();
   const [data, setData] = useState([]);
 
@@ -28,8 +29,15 @@ const EmployeeRetireView = () => {
     }
   }, [transactions]);
 
+  console.log("data", data);
+
   return (
     <>
+      {loading && (
+        <div className="flex items-center justify-center">
+          <Loader />
+        </div>
+      )}
       {data.length > 0 ? (
         <>
           {data.map((tx) => {
