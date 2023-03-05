@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
+
 import { REGENRETIRECONTRACTADDRESS } from "../../constants";
 import { useStateContext } from "../../context/ContextProvider";
-
 import useTransactions from "../../hooks/useTransactions";
 import Loader from "../Loader";
 import Deposit from "./components/Deposit";
@@ -49,7 +49,7 @@ const EmployeeRetireView = () => {
           })}
         </>
       ) : (
-        <></>
+        <div className="text-[14px] font-poppins">No previous deposits</div>
       )}
     </>
   );

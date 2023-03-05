@@ -1,7 +1,7 @@
 import { Tooltip } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-
 import { RiQuestionLine } from "react-icons/ri";
+
 import { useStateContext } from "../../context/ContextProvider";
 import SliderThumbWithTooltip from "./components/SliderThumbWithTooltip";
 import { calculateEndDate, formatNumber } from "../../helpers";

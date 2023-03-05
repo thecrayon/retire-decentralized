@@ -6,12 +6,10 @@ import {
   decodeDepositData,
   formatAddress,
   formatBalance,
-  formatDate,
   formatNumber,
 } from "../../../helpers";
 import { styles } from "../../../styles";
 import CustomCard from "../../CustomCard";
-import { useStateContext } from "../../../context/ContextProvider";
 
 const Deposit = ({ depositDate, ...tx }) => {
   const receiverAddress = decodeDepositData(tx.log_events[0].raw_log_data);

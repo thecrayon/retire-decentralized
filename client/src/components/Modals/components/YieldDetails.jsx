@@ -89,7 +89,9 @@ const YieldDetails = ({ data }) => {
               }
               isLoading={loading && index === clickedButtonIndex}
             >
-              <span className="capitalize">Deposit with {item?.project}</span>
+              <span className="capitalize text-[14px]">
+                Deposit with {item?.project}
+              </span>
             </Button>
           </div>
         </CustomCard>
