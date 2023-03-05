@@ -24,6 +24,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import { Web3Button } from "@web3modal/react";
 
+import RegenLogo from "../../assets/regen-retire.png";
+
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
   const navigate = useNavigate();
@@ -55,16 +57,29 @@ export default function WithSubnavigation() {
             aria-label={"Toggle Navigation"}
           />
         </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Text
-            textAlign={useBreakpointValue({ base: "center", md: "left" })}
-            fontFamily={"heading"}
-            color={useColorModeValue("gray.800", "white")}
-            className="cursor-pointer"
-            onClick={() => navigate("/")}
-          >
-            Regen
-          </Text>
+        <Flex
+          direction="row"
+          align="center"
+          flex={{ base: 1 }}
+          justify={{ base: "center", md: "start" }}
+        >
+          <Flex direction="row" align="center">
+            <Image
+              src={RegenLogo}
+              alt="regen-logo"
+              className="rounded-[12px] w-[50px] h-[50px] object-contain mr-1"
+            />
+
+            <Text
+              textAlign={useBreakpointValue({ base: "center", md: "left" })}
+              fontFamily={"heading"}
+              color={useColorModeValue("gray.800", "white")}
+              className="cursor-pointer"
+              onClick={() => navigate("/")}
+            >
+              Regen
+            </Text>
+          </Flex>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />

@@ -70,7 +70,7 @@ export default function SmallCentered() {
         <img
           src={RegenLogo}
           alt="regen-logo"
-          className="rounded-lg w-[100px] h-[100px]"
+          className="rounded-[12px] w-[100px] h-[100px] object-contain"
         />
       </Container>
 
