@@ -31,11 +31,11 @@ const useDepositOnAave = () => {
         // depositEth // contract address: 0xD322A49006FC828F9B5B37Ab215F99B4E5caB19C // abi: in separate file
         // function name: depositETH
         // 1. address: 0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2
-        // 2. address: 0x8a9e0C25953aCf7232714C466289BEEC0bE1D579 // on behalf of
+        // 2. address: 0x8a9e0C25953aCf7232714C466289BEEC0bE1D579 // user address on behalf of
         // 3. uint16: referral code: 0
     
         // TODO: change amountToDeposit to be dynamic
-        const amountToDeposit = ethers.utils.parseEther("0.001")._hex; // deposit 1 ETH
+        const amountToDeposit = ethers.utils.parseEther("0.001")._hex; // 
 
         setLoading(true);
 

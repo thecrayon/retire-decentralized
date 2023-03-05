@@ -17,7 +17,7 @@ const EmployeeRetireView = () => {
       await fetchTransactions(address);
     };
     if (address) getTransactions();
-  }, []);
+  }, [address]);
 
   useEffect(() => {
     if (transactions.length > 0) {
@@ -27,7 +27,7 @@ const EmployeeRetireView = () => {
 
       setData(data);
     }
-  }, [transactions]);
+  }, [transactions, address]);
 
   return (
     <>

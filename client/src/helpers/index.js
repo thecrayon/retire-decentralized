@@ -55,3 +55,10 @@ export const decodeDepositData = (data) => {
   return amount / 1000000000000000000;
 };
 
+// take in utc time (military time) string and convert to local time
+export const convertToLocalTime = (utcTimeString) => {
+  const utcDate = new Date(utcTimeString);
+  const localDate = utcDate.toLocaleString();
+  return localDate;
+}
+

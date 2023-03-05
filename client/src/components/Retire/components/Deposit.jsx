@@ -3,6 +3,7 @@ import React from "react";
 
 import AvalancheLogo from "../../../assets/avalanche-avax-logo.png";
 import {
+  convertToLocalTime,
   decodeDepositData,
   formatAddress,
   formatBalance,
@@ -13,8 +14,6 @@ import CustomCard from "../../CustomCard";
 
 const Deposit = ({ depositDate, ...tx }) => {
   const receiverAddress = decodeDepositData(tx.log_events[0].raw_log_data);
-
-  console.log(tx);
 
   const handleViewTxReceipt = () => {
     window.open(`https://testnet.snowtrace.io/tx/${tx.tx_hash}`, "_blank");
@@ -53,6 +52,13 @@ const Deposit = ({ depositDate, ...tx }) => {
         <div className="mt-5 grid grid-cols-2 grid-rows-1 w-full text-[14px]">
           <h3 className="font-bold">Amount</h3>
           <div className="text-right">{formatBalance(tx?.value, 18)} avax</div>
+        </div>
+        {/* tx date */}
+        <div className="mt-5 grid grid-cols-2 grid-rows-1 w-full text-[14px]">
+          <h3 className="font-bold">Time</h3>
+          <div className="text-right">
+            {convertToLocalTime(tx?.block_signed_at)}
+          </div>
         </div>
         <button
           className={`mt-5 ${styles.secondaryButton} w-full`}

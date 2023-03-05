@@ -100,7 +100,7 @@ const Calculator = () => {
 
       <div className="grid grid-cols-1 font-poppins text-[14px] mt-10">
         {/* TODO: clean this up. hard to read now*/}
-        <p>
+        <p className="leading-7 mx-2">
           your token balance of{" "}
           <span className="font-bold">
             $
@@ -117,7 +117,17 @@ const Calculator = () => {
           </span>
           at an annual rate of return of{" "}
           <span className="font-bold">
-            {retirementCalculatorData?.annualReturnRate}%{" "}
+            {retirementCalculatorData?.annualReturnRate}%
+            <Tooltip
+              hasArrow
+              label="compounded monthly"
+              bg="#3b82f6"
+              color="white"
+              shouldWrapChildren
+              placement="top"
+            >
+              <RiQuestionLine className="text-xs mb-2 hover:opacity-50 hover:cursor-pointer" />
+            </Tooltip>{" "}
           </span>{" "}
           will be worth{" "}
           <span className="font-bold underline underline-offset-4">
