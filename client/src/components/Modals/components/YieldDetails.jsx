@@ -78,7 +78,7 @@ const YieldDetails = ({ data }) => {
               name={`${item?.project}`}
               backgroundColor="#3b82f6"
               width="full"
-              mt={2}
+              mt={5}
               color="white"
               disabled={item?.project !== "aave-v2"}
               onClick={() =>

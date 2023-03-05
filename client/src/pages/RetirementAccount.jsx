@@ -25,14 +25,13 @@ const RetirementAccount = () => {
       />
       <PageContent>
         {/* LHS - Employer Deposit */}
-        <CustomCard title="Employer 401k Deposit">
+        <CustomCard title="Deposit- Employer 401k">
           {/* <EmployerDeposit /> */}
           <EmployerRetireView />
         </CustomCard>
 
-        {/* RHS - Employee 401k Account Balance and transaction summaries */}
-
-        <CustomCard title="Employee 401k View">
+        {/* RHS - Employer Retirement View Deposits */}
+        <CustomCard title="Previous Deposits- Employer 401k">
           <EmployeeRetireView />
         </CustomCard>
       </PageContent>

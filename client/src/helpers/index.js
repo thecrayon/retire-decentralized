@@ -1,3 +1,5 @@
+const ethers = require('ethers');
+
 // take in eth address and return address sliced 6 characters from the beginning and 4 characters from the end
 export const formatAddress = (address) => {
   return `${address.slice(0, 4)}...${address.slice(-4)}`;
@@ -37,5 +39,19 @@ export const isNewTransaction = (date) => {
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   // return true if transaction is less than 6 hours old // TODO: change to <1 day after hackathon
   return diffDays <= 0.25;
+};
+
+// decode log data from transaction (address, address, ether)
+export const decodeDepositData = (data) => {
+  const decodedData = ethers.utils.defaultAbiCoder.decode(
+    ['address', 'address', 'uint256'],
+    data
+  );
+  return decodedData;
+};
+
+ // function to convert big number to decimal
+ export const convertToDecimal = (amount) => {
+  return amount / 1000000000000000000;
 };
 

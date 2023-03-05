@@ -29,8 +29,6 @@ const EmployeeRetireView = () => {
     }
   }, [transactions]);
 
-  console.log("data", data);
-
   return (
     <>
       {loading && (
@@ -40,8 +38,14 @@ const EmployeeRetireView = () => {
       )}
       {data.length > 0 ? (
         <>
-          {data.map((tx) => {
-            return <Deposit depositDate={tx?.block_signed_at?.slice(0, 10)} />;
+          {data.map((tx, id) => {
+            return (
+              <Deposit
+                key={id}
+                depositDate={tx?.block_signed_at?.slice(0, 10)}
+                {...tx}
+              />
+            );
           })}
         </>
       ) : (

@@ -1,24 +1,36 @@
 import { Alert, AlertIcon, Button, Flex, Input } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useBalance } from "wagmi";
 
 import { useStateContext } from "../../context/ContextProvider";
 import useRetirementAccount from "../../hooks/useRetirementAccount";
-import { formatAddress } from "../../helpers";
+import { convertToDecimal, formatAddress } from "../../helpers";
+
+// regex to check if address is valid
+const validAddress = /^0x[a-fA-F0-9]{40}$/;
 
 const EmployerRetireView = () => {
   const { address, chain } = useStateContext();
+  const { data, isError, isLoading } = useBalance({
+    address: address,
+  });
+  const { deposit, loading, error } = useRetirementAccount();
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-
   const [depositData, setDepositData] = useState({
     addressTo: "",
     amount: "",
   });
 
-  const { deposit, loading } = useRetirementAccount();
+  const balance = convertToDecimal(data?.value?._hex);
 
-  // regex to check if address is valid
-  const validAddress = /^0x[a-fA-F0-9]{40}$/;
+  useEffect(() => {
+    if (error) {
+      setSuccessMessage("");
+      setErrorMessage("");
+      setErrorMessage(error);
+    }
+  }, [error]);
 
   const handleDeposit = async () => {
     setErrorMessage("");
@@ -27,6 +39,11 @@ const EmployerRetireView = () => {
       setErrorMessage(
         "Please make sure your wallet is connected and you're on the Avalanche Fuji testnet"
       );
+      return;
+    }
+
+    if (balance < depositData.amount) {
+      setErrorMessage("You don't have enough AVAX to deposit");
       return;
     }
 
@@ -86,8 +103,9 @@ const EmployerRetireView = () => {
           color="white"
           onClick={handleDeposit}
           isLoading={loading}
+          mt={2}
         >
-          Deposit
+          <span className="font-poppins text-[14px]">Deposit</span>
         </Button>
         {successMessage && (
           <Alert status="success" mt={3}>

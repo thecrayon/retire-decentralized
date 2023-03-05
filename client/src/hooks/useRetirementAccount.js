@@ -37,7 +37,9 @@ const useRetirementAccount = () => {
           await depositTx.wait();
         } catch (error) {
             console.log("retirement deposit error: ", error);
-            setError(error.message);
+            //get error message from error object that starts with "reason" and goes for 10 characters
+            const errorMessage = error.message.substring(error.message.indexOf("reason") + 0, error.message.indexOf("reason") + 26);
+            setError(errorMessage);
         }
         setLoading(false);
       }
@@ -46,6 +48,7 @@ const useRetirementAccount = () => {
         // data and functions
         deposit,
         loading,
+        error,
     };
 };
 

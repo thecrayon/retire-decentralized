@@ -16,8 +16,16 @@ export const ContextProvider = ({ children }) => {
   // user token balances with yield options
   const [userTokenBalancesWithInvestmentData, setUserTokenBalancesWithInvestmentData] = useState([]);
 
+
   // Yield details modal
   const [yieldDetailsModal, setYieldDetailsModal] = useState({
+    isOpen: false,
+    view: "details",
+    data: {},
+  });
+
+  // Deposit details modal
+  const [depositDetailsModal, setDepositDetailsModal] = useState({
     isOpen: false,
     view: "details",
     data: {},
@@ -130,6 +138,8 @@ export const ContextProvider = ({ children }) => {
       setRetirementCalculatorData,
       yieldDetailsModal,
       setYieldDetailsModal,
+      depositDetailsModal,
+      setDepositDetailsModal,
     }}>
       {children}
     </StateContext.Provider>
