@@ -22,6 +22,7 @@ If you want to test this locally, follow the next few steps:
 ## Bounties We Pursued (in alphabetical order)
 
 -Covalent = Make meaningful use of the Covalent API. We used several Covalent apis to fetch data. We got all tokens in a user's wallet by using the balances api / we got all Avalanche Fuji testnet transactions using the transactions api.
+
 -Infura = Deploy your Dapp on Infura with MetaMask and Truffle Dashboard. We used an Infura Avalanche Fuji testnet endpoint to deploy our smart contract using Truffle Dashboard (so we didn't need to store our private key mnemonic in a .env file)
 
 -OpenZeppelin = Use Defender. Our project uses Defender's notification system to send emails to our team whenever a user deposits or withdraws from the Regen Retire 401k smart contract. This allows us to continuously monitor our smart and understand how users are using it.
