@@ -72,7 +72,7 @@ const Calculator = () => {
           <SliderThumbWithTooltip
             name="annualReturnRate"
             xAxes={[0, 50, 100]}
-            toolTip="% apy"
+            toolTip="% apy compounded monthly"
           />
         </div>
 
