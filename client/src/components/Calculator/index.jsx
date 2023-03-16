@@ -8,9 +8,18 @@ import { calculateEndDate, formatNumber } from "../../helpers";
 
 const Calculator = () => {
   const { retirementCalculatorData } = useStateContext();
-  const [futureValue, setfutureValue] = useState(0);
+  const [futureValue, setFutureValue] = useState(0);
 
   const calculateFutureValue = () => {
+    // if monthlyYield === 0 then sum tokens in wallet + monthly contributions
+    if (retirementCalculatorData.annualReturnRate === 0) {
+      const totalMonths = retirementCalculatorData.yearsUntilRetire * 12;
+      const futureValue =
+        retirementCalculatorData?.totalValueOfAllTokensInWallet +
+        retirementCalculatorData.monthlyContribution * totalMonths;
+      return futureValue;
+    }
+
     const monthlyYield =
       Number(retirementCalculatorData.annualReturnRate) / 100 / 12;
     const totalMonths = retirementCalculatorData.yearsUntilRetire * 12;
@@ -25,12 +34,13 @@ const Calculator = () => {
 
   useEffect(() => {
     const res = calculateFutureValue();
+    if (res === Infinity || res === -Infinity || isNaN(res)) {
+      setFutureValue(0);
+      return;
+    }
     // format to two decimals and commas
-    setfutureValue(formatNumber(res));
+    setFutureValue(formatNumber(res));
   }, [retirementCalculatorData]);
-
-  // TODO: add reset button
-  // TODO: retirement summary
 
   return (
     <div className="mx-4">
@@ -104,15 +114,16 @@ const Calculator = () => {
           Your token balance of{" "}
           <span className="font-bold">
             $
-            {retirementCalculatorData?.totalValueOfAllTokensInWallet?.toFixed(
-              2
+            {formatNumber(
+              retirementCalculatorData?.totalValueOfAllTokensInWallet
             )}
             ,{" "}
           </span>{" "}
           <span>
             with a{" "}
             <span className="font-bold">
-              ${retirementCalculatorData?.monthlyContribution}/month
+              ${formatNumber(retirementCalculatorData?.monthlyContribution)}
+              /month
             </span>{" "}
             contribution,{" "}
           </span>

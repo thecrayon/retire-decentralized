@@ -1,4 +1,4 @@
-const ethers = require('ethers');
+const ethers = require("ethers");
 
 // take in eth address and return address sliced 6 characters from the beginning and 4 characters from the end
 export const formatAddress = (address) => {
@@ -12,6 +12,7 @@ export const formatBalance = (balance, contract_decimals) => {
 
 // take in number and return number with commas and 2 decimal places
 export const formatNumber = (number) => {
+  if (!number) return 0;
   return number.toLocaleString(undefined, { maximumFractionDigits: 2 });
 };
 
@@ -22,14 +23,14 @@ export const calculateEndDate = (years) => {
   const endDate = new Date(endYear, 11, 31); // December 31st of the end year
   const endYearString = endDate.getFullYear().toString(); // Convert the end year to a string
   return endYearString;
-}
+};
 
 export const formatDate = (date) => {
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const options = { year: "numeric", month: "long", day: "numeric" };
   // add 1 day to date to account for timezone difference
   const newDate = new Date(date);
   newDate.setDate(newDate.getDate() + 1);
-  return newDate.toLocaleDateString('en-US', options);
+  return newDate.toLocaleDateString("en-US", options);
 };
 
 export const isNewTransaction = (date) => {
@@ -44,14 +45,14 @@ export const isNewTransaction = (date) => {
 // decode log data from transaction (address, address, ether)
 export const decodeDepositData = (data) => {
   const decodedData = ethers.utils.defaultAbiCoder.decode(
-    ['address', 'address', 'uint256'],
+    ["address", "address", "uint256"],
     data
   );
   return decodedData;
 };
 
- // function to convert big number to decimal
- export const convertToDecimal = (amount) => {
+// function to convert big number to decimal
+export const convertToDecimal = (amount) => {
   return amount / 1000000000000000000;
 };
 
@@ -60,5 +61,4 @@ export const convertToLocalTime = (utcTimeString) => {
   const utcDate = new Date(utcTimeString);
   const localDate = utcDate.toLocaleString();
   return localDate;
-}
-
+};

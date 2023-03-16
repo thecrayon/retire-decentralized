@@ -24,6 +24,8 @@ const Asset = (props) => {
     return { minApy, maxApy };
   };
 
+  console.log(props);
+
   return (
     <CustomCard>
       <div className="font-poppins">
@@ -34,7 +36,7 @@ const Asset = (props) => {
               src={props?.logo_url}
               alt={`${props?.contract_ticker_symbol} logo`}
               className="object-contain rounded-full w-[50px] h-[50px]"
-              filter="invert(100%)"
+              filter={props?.contract_ticker_symbol === "ETH" && "invert(100%)"}
             />
           </div>
           <div className="grid grid-cols-1 grid-rows-2 gap-0.5">
