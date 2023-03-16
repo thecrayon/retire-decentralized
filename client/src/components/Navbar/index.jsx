@@ -73,6 +73,7 @@ export default function WithSubnavigation() {
 
             <Text
               textAlign={useBreakpointValue({ base: "center", md: "left" })}
+              px={{ base: 1, md: 3 }}
               fontFamily={"heading"}
               color={useColorModeValue("gray.800", "white")}
               className="cursor-pointer"

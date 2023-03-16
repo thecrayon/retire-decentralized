@@ -24,8 +24,6 @@ const Asset = (props) => {
     return { minApy, maxApy };
   };
 
-  console.log(props);
-
   return (
     <CustomCard>
       <div className="font-poppins">

@@ -8,6 +8,7 @@ const CustomCard = ({ title, children, restStyles }) => {
       marginX={{ base: 2, md: 0 }}
       variant="elevated"
       borderRadius={10}
+      {...restStyles}
     >
       {title && (
         <CardHeader>

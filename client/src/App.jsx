@@ -28,7 +28,7 @@ const App = () => {
             </Routes>
           </div>
         ) : (
-          <div className="min-h-screen">
+          <div className="min-h-screen mx-auto w-3/4  sm:w-1/2">
             <CustomCard>
               <div className="flex items-center justify-center">
                 <div className="grid grid-cols-1">
