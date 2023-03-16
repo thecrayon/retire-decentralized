@@ -21,7 +21,7 @@ jobs:
         working-directory: ./client
         run: |
           sudo apt-get update && sudo apt-get install -y curl
-          curl -sL https://deb.nodesource.com/setup_${{ matrix.node-version }}.x | sudo -E bash -
+          curl -sL https://deb.nodesource.com/setup_${{ matrix.node-version }} | sudo -E bash -
           sudo apt-get install -y nodejs
           node --version
           npm --version
