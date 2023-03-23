@@ -26,6 +26,16 @@ export const ContextProvider = ({ children }) => {
     data: {},
   });
 
+  // Wizard
+  // goal
+  // risk
+  // register-wallets
+  const [wizardModal, setWizardModal] = useState({
+    isOpen: true,
+    view: "goal",
+    data: {},
+  });
+
   // WAGMI hooks
   const { address } = useAccount();
   const { chain } = useNetwork();
@@ -193,6 +203,8 @@ export const ContextProvider = ({ children }) => {
         setRetirementCalculatorData,
         yieldDetailsModal,
         setYieldDetailsModal,
+        wizardModal,
+        setWizardModal,
       }}
     >
       {children}

@@ -6,6 +6,7 @@ import CustomCard from "./components/CustomCard";
 import { useStateContext } from "./context/ContextProvider";
 import { Home } from "./pages";
 import RetirementAccount from "./pages/RetirementAccount";
+import Wizard from "./pages/Wizard";
 
 const App = () => {
   const { address } = useStateContext();
@@ -21,6 +22,7 @@ const App = () => {
             <Routes>
               <Route path="*" element={<Home />} />
               <Route path="/" element={<Home />} />
+              <Route path="/sign-up-wizard" element={<Wizard />} />
               <Route
                 path="/retirement-account"
                 element={<RetirementAccount />}
