@@ -37,8 +37,7 @@ const formTabs = [
 
 const Wizard = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const { wizardModal, setWizardModal } = useStateContext();
-  const [selectedTab, setSelectedTab] = useState(formTabs[0]);
+  const [selectedTab, setSelectedTab] = useState(formTabs[0].title);
   const handleClose = () => {};
 
   // pages
@@ -88,7 +87,7 @@ const Wizard = () => {
               justifyContent="center"
               mt={{ base: "5", md: "10" }}
             >
-              <div className="w-[4/5] min-h-[400px] overflow-y-scroll">
+              <div className="min-h-[400px] overflow-y-scroll">
                 {selectedTab === "goal" && <Goal />}
                 {selectedTab === "risk" && <Risk />}
                 {selectedTab === "wallets" && <ConnectWallets />}

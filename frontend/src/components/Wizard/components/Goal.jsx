@@ -6,7 +6,7 @@ const Goal = () => {
 
   const onSelect = (e) => {
     setValue(e);
-    window.localStorage.set("wizardGoal", e.target.value);
+    window.localStorage.set("wizardGoal", e);
   };
 
   console.log("wizard radio value", value);
@@ -15,7 +15,7 @@ const Goal = () => {
   return (
     <Box>
       <Stack direction="column">
-        <Text fontWeight={700} fontSize="2xl">
+        <Text fontWeight={700} fontSize="lg">
           What is your goal?
         </Text>
 

@@ -20,7 +20,9 @@ const TabItem = ({ item, selected, setSelectedTab }) => {
       <Flex alignItems="center" height="20px" mr={2}>
         <Icon as={item.icon} />
       </Flex>
-      <Text fontSize="10pt">{item.title}</Text>
+      <Text fontSize="10pt" textTransform="capitalize">
+        {item.title}
+      </Text>
     </Flex>
   );
 };
