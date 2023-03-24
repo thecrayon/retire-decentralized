@@ -1,4 +1,5 @@
 /* eslint-disable */
+import { useToast } from "@chakra-ui/react";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAccount, useNetwork } from "wagmi";
@@ -9,6 +10,11 @@ import useAllBalances from "../hooks/useAllBalances";
 const StateContext = createContext();
 
 export const ContextProvider = ({ children }) => {
+  const [toastMessage, setToastMessage] = useState({
+    title: "",
+    description: "",
+    status: "",
+  });
   // all defi yield options from llama.fi
   const [defiYieldOptions, setDefiYieldOptions] = useState();
   // user token balances
@@ -44,6 +50,7 @@ export const ContextProvider = ({ children }) => {
   const { fetchMyTokenBalances } = useAllBalances();
 
   const navigate = useNavigate();
+  const toast = useToast();
 
   // calculator state
   const [retirementCalculatorData, setRetirementCalculatorData] = useState({
@@ -191,6 +198,21 @@ export const ContextProvider = ({ children }) => {
     if (!address) navigate("/");
   }, [address]);
 
+  // when error message is set, show chakra toast with error message
+  useEffect(() => {
+    if (toastMessage.description) {
+      toast({
+        title: toastMessage.title || "Error",
+        description: toastMessage.description || "Error",
+        status: toastMessage.status || "error",
+        duration: 5000,
+        isClosable: true,
+        position: "top-right",
+      });
+    }
+    setToastMessage({ title: "", description: "", status: "" });
+  }, [toastMessage.description]);
+
   return (
     <StateContext.Provider
       value={{
@@ -205,6 +227,8 @@ export const ContextProvider = ({ children }) => {
         setYieldDetailsModal,
         wizardModal,
         setWizardModal,
+        toastMessage,
+        setToastMessage,
       }}
     >
       {children}

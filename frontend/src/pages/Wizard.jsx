@@ -1,21 +1,18 @@
 import {
+  Box,
   Flex,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalHeader,
   ModalOverlay,
   Stack,
-  Tab,
-  Text,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { useStateContext } from "../context/ContextProvider";
 import { GiSoccerBall } from "react-icons/gi";
 import {
-  MdOutlineRoomPreferences,
   MdOutlineAccountBalanceWallet,
+  MdOutlineRoomPreferences,
 } from "react-icons/md";
 import TabItem from "../components/TabItem";
 import { ConnectWallets, Goal, Risk } from "../components/Wizard";
@@ -39,18 +36,6 @@ const Wizard = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [selectedTab, setSelectedTab] = useState(formTabs[0].title);
   const handleClose = () => {};
-
-  // pages
-  // Hi, Tell us about yourself. We won't share your information with anyone.
-
-  // What is your goal: 1) retire 2) sabbatical
-  // page: wizard/goal
-
-  // What's your risk tolerance? 1) low 2) medium 3) high
-  // page: wizard/risk
-
-  // Register your crypto wallets
-  // page: wizard/register-wallets
 
   return (
     <Modal isOpen={isOpen} onClose={handleClose} size="3xl">
@@ -87,11 +72,11 @@ const Wizard = () => {
               justifyContent="center"
               mt={{ base: "5", md: "10" }}
             >
-              <div className="min-h-[400px] overflow-y-scroll">
+              <Box overflow="scroll" minH="400px">
                 {selectedTab === "goal" && <Goal />}
                 {selectedTab === "risk" && <Risk />}
                 {selectedTab === "wallets" && <ConnectWallets />}
-              </div>
+              </Box>
             </Flex>
           </Flex>
         </ModalBody>

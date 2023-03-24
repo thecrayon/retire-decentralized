@@ -9,7 +9,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
-import { mainnet, avalancheFuji } from "wagmi/chains";
+import { avalancheFuji, mainnet } from "wagmi/chains";
 
 import App from "./App";
 import { theme } from "./chakra/theme";

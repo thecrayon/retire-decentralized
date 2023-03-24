@@ -13,6 +13,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { useStateContext } from "../../../context/ContextProvider";
 import { formatAddress } from "../../../helpers";
 
 const pattern = "^0x[a-fA-F0-9]{40}$";
@@ -20,33 +21,25 @@ const pattern = "^0x[a-fA-F0-9]{40}$";
 const ConnectWallets = () => {
   const [wallet, setWallet] = useState("");
   const [connectedWallets, setConnectedWallets] = useState([]);
-  const toast = useToast();
-
-  const showErrorMessage = ({ title, description }) =>
-    toast({
-      title: title,
-      description: description,
-      status: "error",
-      duration: 5000,
-      isClosable: true,
-      position: "top",
-    });
+  const { setToastMessage } = useStateContext();
 
   const onWalletAdd = () => {
     if (!wallet || !wallet.trim()) return;
 
     if (!wallet.match(pattern)) {
-      showErrorMessage({
+      setToastMessage({
         title: "Invalid wallet address",
         description: "Please enter a valid wallet address.",
+        status: "error",
       });
       return;
     }
 
     if (connectedWallets.includes(wallet)) {
-      showErrorMessage({
+      setToastMessage({
         title: "Wallet already added",
         description: "Please add a new wallet.",
+        status: "error",
       });
       return;
     }
@@ -57,8 +50,6 @@ const ConnectWallets = () => {
 
     setWallet("");
   };
-
-  console.log(connectedWallets);
 
   return (
     <>
@@ -98,7 +89,6 @@ const ConnectWallets = () => {
         align="center"
         justify="center"
       >
-        {/* for some reason lg fontsize isn't applying same size font here as in rest of project */}
         <Text fontWeight={700} fontSize="lg">
           Add a wallet!
         </Text>

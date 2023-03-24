@@ -1,6 +1,7 @@
-import { Alert, AlertIcon, Button } from "@chakra-ui/react";
-import React, { useState, useRef } from "react";
+import { Button } from "@chakra-ui/react";
+import React, { useState } from "react";
 import { VscCheckAll } from "react-icons/vsc";
+import { useStateContext } from "../../../context/ContextProvider";
 
 import { formatNumber } from "../../../helpers";
 import useDepositOnAave from "../../../hooks/useDepositOnAave";
@@ -38,31 +39,25 @@ const ProtocolYieldOption = ({ index, ...item }) => (
 const YieldDetails = ({ data }) => {
   const { depositETHOnAave, loading } = useDepositOnAave();
   const [clickedButtonIndex, setClickedButtonIndex] = useState();
-  const [errorMessage, setErrorMessage] = useState("");
-  const ref = useRef();
+  const { setToastMessage } = useStateContext();
 
   const handleDepositClicked = async ({ buttonIndex, projectName }) => {
     setClickedButtonIndex(buttonIndex);
     if (projectName !== "aave-v3") {
-      // scroll to ref
-      ref.current.scrollIntoView({ behavior: "smooth" });
-      setErrorMessage("Only Eth on Aave V3 is supported at the moment");
+      setToastMessage({
+        title: "Not supported",
+        description:
+          "This protocol is not supported yet. Only Eth on Aave V3 is supported at the moment.",
+        status: "error",
+      });
       setClickedButtonIndex();
       return;
     }
 
-    setErrorMessage("");
-
     await depositETHOnAave();
   };
   return (
-    <div className="container mx-auto font-poppins text-[14px]" ref={ref}>
-      {errorMessage && (
-        <Alert status="error">
-          <AlertIcon />
-          {errorMessage}
-        </Alert>
-      )}
+    <div className="container mx-auto font-poppins text-[14px]">
       {data?.defiYieldOptionsForToken?.map((item, index) => (
         <CustomCard>
           <div
